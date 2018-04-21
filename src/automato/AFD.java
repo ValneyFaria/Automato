@@ -160,6 +160,6 @@ public class AFD {
 		System.out.println("as");
 		ImprimeHashNo(vetorNos[1]);
 
-		// Teste Pro GIT
+		// Teste 2 Pro GIT
 	}
 }
