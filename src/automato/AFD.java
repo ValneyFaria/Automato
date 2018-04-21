@@ -161,5 +161,6 @@ public class AFD {
 		ImprimeHashNo(vetorNos[1]);
 
 		// Teste 2 Pro GIT
+		// Ok
 	}
 }
