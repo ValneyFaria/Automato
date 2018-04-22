@@ -184,8 +184,6 @@ public class AFD {
 		vetPalavra = palavra.toCharArray();
 		System.out.println(vetPalavra);
 		
-		
-		
 		// Verificacao por Simbolos Invalidos
 		for (int i = 0; i < palavra.length(); i++) {
 			for (int j = 0; j < alfabeto.size(); j++) {
