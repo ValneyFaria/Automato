@@ -164,11 +164,6 @@ public class AFD {
 
 		String palavra = "asda";
 		
-		char[] vetPalavra = new char[palavra.length()];
-		
-		vetPalavra = palavra.toCharArray();
-		System.out.println(vetPalavra);
-		
 		boolean aux = false;
 		
 		aux = VerificaPalavra(palavra, vetorNos, alfabeto);
@@ -184,11 +179,21 @@ public class AFD {
 	public static boolean VerificaPalavra(String palavra, No[] vetorNos, LinkedList<String> alfabeto) {
 		boolean flag = true;
 		
+		char[] vetPalavra = new char[palavra.length()];
+		
+		vetPalavra = palavra.toCharArray();
+		System.out.println(vetPalavra);
+		
+		
+		
 		// Verificacao por Simbolos Invalidos
 		for (int i = 0; i < palavra.length(); i++) {
 			for (int j = 0; j < alfabeto.size(); j++) {
-				if (palavra.substring(i) == alfabeto.get(j)) {
-					System.out.println(palavra.substring(i));
+				if (Character.toString(vetPalavra[i]) == alfabeto.get(j)) {
+					flag = true;
+				}
+				else {
+					return false;
 				}
 			}
 		}
