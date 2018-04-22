@@ -33,6 +33,8 @@ public class AFD {
 		return null;
 		
 	}
+	
+	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
@@ -160,7 +162,37 @@ public class AFD {
 		System.out.println("as");
 		ImprimeHashNo(vetorNos[1]);
 
-		// Teste 2 Pro GIT
-		// Ok
+		String palavra = "asda";
+		
+		char[] vetPalavra = new char[palavra.length()];
+		
+		vetPalavra = palavra.toCharArray();
+		System.out.println(vetPalavra);
+		
+		boolean aux = false;
+		
+		aux = VerificaPalavra(palavra, vetorNos, alfabeto);
+		
+		if(aux) {
+			System.out.println("A palavra " + palavra + " eh aceita pelo automato!");
+		}
+		else {
+			System.out.println("A palavra " + palavra + " nao eh aceita pelo automato!");
+		}
+	}
+
+	public static boolean VerificaPalavra(String palavra, No[] vetorNos, LinkedList<String> alfabeto) {
+		boolean flag = true;
+		
+		// Verificacao por Simbolos Invalidos
+		for (int i = 0; i < palavra.length(); i++) {
+			for (int j = 0; j < alfabeto.size(); j++) {
+				if (palavra.substring(i) == alfabeto.get(j)) {
+					System.out.println(palavra.substring(i));
+				}
+			}
+		}
+		
+		return false;
 	}
 }
