@@ -2,7 +2,6 @@ package automato;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class AFD {
 	
@@ -23,15 +22,6 @@ public class AFD {
             No value = n.hMap.get(key);
             System.out.println(n.getNome() + "->" + value.getNome() + "," + key);
 		}
-	}
-
-	@SuppressWarnings({ "unused", "resource" })
-	private static String pesquisar(){
-		Scanner entrada = new Scanner(System.in); 
-		System.out.println("Informe a key");
-		Integer key = entrada.nextInt();
-		return null;
-		
 	}
 
 	public static void main(String[] args) {
