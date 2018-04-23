@@ -34,7 +34,6 @@ public class AFD {
 		
 	}
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// Esse valor armazena o numero de Nos
 		int nNos = 2;
@@ -47,8 +46,6 @@ public class AFD {
 
 		// No Inicial
 		No noInicial = new No();
-		// No Atual
-		No noAtual = new No();
 
 		// Lista Encadeada que armazena os simbolos do alfabeto
 		LinkedList<String> alfabeto = new LinkedList<>();
@@ -161,7 +158,7 @@ public class AFD {
 		}
 		ImprimeHashNo(vetorNos[1]);
 
-		String palavra = "baba";
+		String palavra = "bb";
 		
 		boolean aux = false;
 		
@@ -200,12 +197,12 @@ public class AFD {
 		}
 		
 		// Verificacao de Palavra Vazia
-		if (palavra == "$" && noInicial.getEstadoFinal() == 1) {
+		if (palavra.equals("$") && noInicial.getEstadoFinal() == 1) {
 			System.out.println("Palavra Vazia!");
 			flag = true;
 			return flag;
 		}
-		else if(palavra == "$" && noInicial.getEstadoFinal() == 0) {
+		else if(palavra.equals("$") && noInicial.getEstadoFinal() == 0) {
 			System.out.println("Palavra Vazia!");
 			flag = false;
 			return flag;
