@@ -32,7 +32,8 @@ public class AFN {
 		return null;
 		
 	}
-
+	
+	// Implementar baseado no que a Isabela falou sobre a inversao dos papeis
 	public static void main(String[] args) {
 		// Esse valor armazena o numero de Nos
 		int nNos = 2;
