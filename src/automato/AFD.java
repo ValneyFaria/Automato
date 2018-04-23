@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import javax.print.attribute.standard.Chromaticity;
+
 public class AFD {
 	
 	public static void imprimeVNos(No[] vetor) {
@@ -46,9 +48,11 @@ public class AFD {
 		
 		// Vetor que armazena todos os Nos
 		No[] vetorNos = new No[nNos]; 
-		
-		No noInicial = new No(); // No Inicial
-		No noAtual = new No(); // No Atual
+
+		// No Inicial
+		No noInicial = new No();
+		// No Atual
+		No noAtual = new No();
 
 		// Lista Encadeada que armazena os simbolos do alfabeto
 		LinkedList<String> alfabeto = new LinkedList<>();
@@ -78,7 +82,7 @@ public class AFD {
 		System.out.println("tam do vetor: " + vetorNos.length);
 		
 		vetorNos[0].setEstadoInicial(1); // q0 eh estado inicial
-		vetorNos[vetorNos.length - 1].setEstadoFinal(1); // q2 eh estado final
+		vetorNos[vetorNos.length - 1].setEstadoFinal(1); // q1 eh estado final
 		
 		System.out.println("No Inicial " + vetorNos[0].getNome() + " : " + vetorNos[0].getEstadoInicial());
 		System.out.println("No Final " + vetorNos[vetorNos.length - 1].getNome() + " : " + vetorNos[vetorNos.length - 1].getEstadoFinal());
@@ -162,11 +166,11 @@ public class AFD {
 		System.out.println("as");
 		ImprimeHashNo(vetorNos[1]);
 
-		String palavra = "asda";
+		String palavra = "abba";
 		
 		boolean aux = false;
 		
-		aux = VerificaPalavra(palavra, vetorNos, alfabeto);
+		aux = VerificaPalavra(palavra, vetorNos, alfabeto, noInicial);
 		
 		if(aux) {
 			System.out.println("A palavra " + palavra + " eh aceita pelo automato!");
@@ -176,8 +180,9 @@ public class AFD {
 		}
 	}
 
-	public static boolean VerificaPalavra(String palavra, No[] vetorNos, LinkedList<String> alfabeto) {
+	public static boolean VerificaPalavra(String palavra, No[] vetorNos, LinkedList<String> alfabeto, No noInicial) {
 		boolean flag = true;
+		No noAtual;
 		
 		char[] vetPalavra = new char[palavra.length()];
 		
@@ -186,16 +191,50 @@ public class AFD {
 		
 		// Verificacao por Simbolos Invalidos
 		for (int i = 0; i < palavra.length(); i++) {
-			for (int j = 0; j < alfabeto.size(); j++) {
-				if (Character.toString(vetPalavra[i]) == alfabeto.get(j)) {
-					flag = true;
-				}
-				else {
-					return false;
-				}
+			// Verifica se todos os caracteres da palavra estao contidos no alfabeto				
+			if (alfabeto.contains(Character.toString(vetPalavra[i])) || palavra.equals("$")) {
+				System.out.println("Entrou");
+				continue;
+			}
+			// Se algum caractere estranho for encontrado, a verificacao eh terminada
+			else{
+				System.out.println("Algum simbolo nao foi encontrado no alfabeto!");
+				flag = false;
+				return flag;
 			}
 		}
 		
-		return false;
+		// Verificacao de Palavra Vazia
+		if (palavra == "$" && noInicial.getEstadoFinal() == 1) {
+			System.out.println("Palavra Vazia!");
+			flag = true;
+			return flag;
+		}
+		else if(noInicial.getEstadoFinal() == 0) {
+			System.out.println("Palavra Vazia!");
+			flag = false;
+			return flag;
+		}
+		
+		// Verificacao de Palavra com 1 Simbolo
+		if (palavra.length() == 1 && alfabeto.contains(palavra)) {
+			flag = true;
+			return flag;
+		}
+		else if (palavra.length() == 1 && alfabeto.contains(palavra) != true){
+			flag = false;
+			return flag;
+		}
+		
+//		// Verificacao de Palavras
+//		noAtual = noInicial;
+//		for (int i = 0; i < vetPalavra.length; i++) {
+//			String pal = Character.toString(vetPalavra[i]);
+//			
+//			System.out.println(noAtual.getNome());
+//			System.out.println(noAtual.hMap.keySet());
+//		}
+		
+		return flag;
 	}
 }
