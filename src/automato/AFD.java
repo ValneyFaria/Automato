@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import javax.print.attribute.standard.Chromaticity;
-
 public class AFD {
 	
 	public static void imprimeVNos(No[] vetor) {
@@ -35,8 +33,6 @@ public class AFD {
 		return null;
 		
 	}
-	
-	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
@@ -163,10 +159,9 @@ public class AFD {
 	            System.out.println(vetorNos[i].getNome() + "->" + value.getNome() + "," + key);
 			}
 		}
-		System.out.println("as");
 		ImprimeHashNo(vetorNos[1]);
 
-		String palavra = "abba";
+		String palavra = "baba";
 		
 		boolean aux = false;
 		
@@ -193,7 +188,7 @@ public class AFD {
 		for (int i = 0; i < palavra.length(); i++) {
 			// Verifica se todos os caracteres da palavra estao contidos no alfabeto				
 			if (alfabeto.contains(Character.toString(vetPalavra[i])) || palavra.equals("$")) {
-				System.out.println("Entrou");
+				System.out.println("Caracter Validado");
 				continue;
 			}
 			// Se algum caractere estranho for encontrado, a verificacao eh terminada
@@ -210,7 +205,7 @@ public class AFD {
 			flag = true;
 			return flag;
 		}
-		else if(noInicial.getEstadoFinal() == 0) {
+		else if(palavra == "$" && noInicial.getEstadoFinal() == 0) {
 			System.out.println("Palavra Vazia!");
 			flag = false;
 			return flag;
@@ -218,22 +213,50 @@ public class AFD {
 		
 		// Verificacao de Palavra com 1 Simbolo
 		if (palavra.length() == 1 && alfabeto.contains(palavra)) {
+			System.out.println("Palavra Valida de um simbolo!");
 			flag = true;
 			return flag;
 		}
 		else if (palavra.length() == 1 && alfabeto.contains(palavra) != true){
+			System.out.println("Palavra Invalida de um simbolo!");
 			flag = false;
 			return flag;
 		}
 		
-//		// Verificacao de Palavras
-//		noAtual = noInicial;
-//		for (int i = 0; i < vetPalavra.length; i++) {
-//			String pal = Character.toString(vetPalavra[i]);
-//			
-//			System.out.println(noAtual.getNome());
-//			System.out.println(noAtual.hMap.keySet());
-//		}
+		// Verificacao de Palavras
+		noAtual = noInicial;
+		for (int i = 0; i < vetPalavra.length; i++) {
+			System.out.println("VERIFICACAO DE PALAVRAS: " + i);
+			String pal = Character.toString(vetPalavra[i]);
+			
+			System.out.println("Pal: " + pal);
+			
+			// Verifica a existencia do simbolo no hash do estado atual
+			if (noAtual.hMap.containsKey(pal)) {
+				// No atual recebe o no destino
+				System.out.println(i + " NO ATUAL: " + noAtual.getNome());
+				noAtual = noAtual.hMap.get(pal);
+				System.out.println(i + " NO ATUAL: " + noAtual.getNome());
+			}
+			else{
+				System.out.println("Palavra Rejeitada!");
+				flag = false;
+				return flag;
+			}
+			
+			// Se a palavra foi toda percorrida e o estado atual eh final, aceite
+			if (i == (vetPalavra.length - 1) && noAtual.getEstadoFinal() == 1) {
+				System.out.println("Palavra Percorrida e estado atual eh final!");
+				flag = true;
+				return flag;
+			}
+			// Se a palavra foi toda percorrida e o estado atual nao eh final, rejeite
+			else if (i == (vetPalavra.length - 1) && noAtual.getEstadoFinal() == 0) {
+				System.out.println("Palavra Percorrida e estado atual nao eh final!");
+				flag = false;
+				return flag;
+			}
+		}
 		
 		return flag;
 	}
