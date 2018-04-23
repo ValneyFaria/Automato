@@ -226,17 +226,17 @@ public class AFD {
 		// Verificacao de Palavras
 		noAtual = noInicial;
 		for (int i = 0; i < vetPalavra.length; i++) {
-			System.out.println("VERIFICACAO DE PALAVRAS: " + i);
+			System.out.println("\nVERIFICACAO DE PALAVRAS: " + i);
 			String pal = Character.toString(vetPalavra[i]);
 			
-			System.out.println("Pal: " + pal);
+			System.out.println("SIMBOLO: " + pal);
 			
 			// Verifica a existencia do simbolo no hash do estado atual
 			if (noAtual.hMap.containsKey(pal)) {
 				// No atual recebe o no destino
 				System.out.println(i + " NO ATUAL: " + noAtual.getNome());
 				noAtual = noAtual.hMap.get(pal);
-				System.out.println(i + " NO ATUAL: " + noAtual.getNome());
+				System.out.println(i + " NO DESTINO: " + noAtual.getNome());
 			}
 			else{
 				System.out.println("Palavra Rejeitada!");
