@@ -158,7 +158,7 @@ public class AFD {
 		}
 		ImprimeHashNo(vetorNos[1]);
 
-		String palavra = "bb";
+		String palavra = "babbabababbaba";
 		
 		boolean aux = false;
 		
@@ -175,6 +175,8 @@ public class AFD {
 	public static boolean VerificaPalavra(String palavra, No[] vetorNos, LinkedList<String> alfabeto, No noInicial) {
 		boolean flag = true;
 		No noAtual;
+		
+		noAtual = noInicial;
 		
 		char[] vetPalavra = new char[palavra.length()];
 		
@@ -209,7 +211,7 @@ public class AFD {
 		}
 		
 		// Verificacao de Palavra com 1 Simbolo
-		if (palavra.length() == 1 && alfabeto.contains(palavra)) {
+		if (palavra.length() == 1 && alfabeto.contains(palavra) && noAtual.getEstadoFinal() == 1) {
 			System.out.println("Palavra Valida de um simbolo!");
 			flag = true;
 			return flag;
@@ -221,7 +223,6 @@ public class AFD {
 		}
 		
 		// Verificacao de Palavras
-		noAtual = noInicial;
 		for (int i = 0; i < vetPalavra.length; i++) {
 			System.out.println("\nVERIFICACAO DE PALAVRAS: " + i);
 			String pal = Character.toString(vetPalavra[i]);
