@@ -62,13 +62,24 @@ public class AFD {
 		
 		System.out.println("tam do vetor: " + vetorNos.length);
 		
-		vetorNos[0].setEstadoInicial(1); // q0 eh estado inicial
-		vetorNos[vetorNos.length - 1].setEstadoFinal(1); // q1 eh estado final
+		// Define o estado inicial
+		for (int i = 0; i < vetorNos.length; i++) {
+			if (vetorNos[i].getNome().equals(anaLe.getEstadoInicial())) {
+				vetorNos[i].setEstadoInicial(1);
+				noInicial = vetorNos[i];
+			}
+		}
+		// Define os estados finais
+		for (int i = 0; i < vetorNos.length; i++) {
+			for (int j = 0; j < anaLe.getNumDeEstadosFinais(); j++) {
+				if (vetorNos[i].getNome().equals(anaLe.getEstadosFinais().get(j))) {
+					vetorNos[i].setEstadoFinal(1);
+				}
+			}
+		}
 		
 		System.out.println("No Inicial " + vetorNos[0].getNome() + " : " + vetorNos[0].getEstadoInicial());
 		System.out.println("No Final " + vetorNos[vetorNos.length - 1].getNome() + " : " + vetorNos[vetorNos.length - 1].getEstadoFinal());
-		
-		noInicial = vetorNos[0];
 		
 		// Se a transicao do no inicial for a, vai para o no1
 		// Transicao (q0, a, q1)
