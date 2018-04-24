@@ -26,6 +26,8 @@ public class AFD {
 
 	public static void main(String[] args) {
 		
+		String palavra = "babbabababbaba";
+		
 		Leitura anaLe = new Leitura();
 		
 		// Esse valor armazena o numero de Nos
@@ -149,8 +151,6 @@ public class AFD {
 			}
 		}
 		ImprimeHashNo(vetorNos[1]);
-
-		String palavra = "babbabababbaba";
 		
 		boolean aux = false;
 		

@@ -1,8 +1,19 @@
-# Automato
+SIMULADOR DE AFD
+====================================================================================
 
-Este arquivo possui as instruções básicas para execução do programa de montagem e simulação de autômatod AFD e AFN.
-Por meio deste, o usuário poderá criar as regras e definições para os autômatos e depois, testar se determinadas palavras
-são ou não aceitas.
+PROFESSOR: Vinícius Durelli
 
-#Entrada:
-A entrada é feita via arquivo e digitação no teclado.
+ALUNOS:
+Ana Letícia Neves
+Valney Faria
+
+------------------------------------------------------------------------------------
+
+INSTRUÇÕES:
+
+- ENTRADA:
+	entrada.txt: Arquivo que contém a estrutura básica do autômato, tal como número
+	de símbolos do alfabeto, o alfabeto em si, o número de estados e os estados em
+	si, as transições de estados e símbolos, 
+
+

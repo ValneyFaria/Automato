@@ -15,8 +15,7 @@ public class NoN {
 	}
 
 	public int getEstadoInicial() {
-		return this.estadoInicial;
-		
+		return this.estadoInicial;	
 	}
 
 	public void setEstadoFinal(int estadoFinal) {
