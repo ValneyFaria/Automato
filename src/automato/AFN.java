@@ -1,10 +1,10 @@
 package automato;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Scanner;
 
 public class AFN {
+	
 	public static void imprimeVNos(No[] vetor) {
 		for (int i = 0; i < vetor.length; i++) {
 			System.out.println(vetor[i].getNome());
@@ -23,37 +23,51 @@ public class AFN {
             System.out.println(n.getNome() + "->" + value.getNome() + "," + key);
 		}
 	}
-
-	@SuppressWarnings({ "unused", "resource" })
-	private static String pesquisar(){
-		Scanner entrada = new Scanner(System.in); 
-		System.out.println("Informe a key");
-		Integer key = entrada.nextInt();
-		return null;
+	
+	// Verifica se ha caracteres para serem gastos
+	public static boolean VerificaVazia(String[] VetPalavra, int aux) {
+		boolean flag = false;
 		
+		if(aux == VetPalavra.length) {
+			flag = true;
+			return flag;
+		}
+		
+		return flag;
 	}
 	
-	// Implementar baseado no que a Isabela falou sobre a inversao dos papeis
+	// Verifica se o estado atual eh final
+	public static boolean VerificaFinal(NoN no) {
+		boolean flag = false;
+		
+		if(no.getEstadoFinal() == 1) {
+			flag = true;
+			return flag;
+		}
+		
+		return flag;
+	}
+
 	public static void main(String[] args) {
+		
+		String palavra = "babbabababbaba";
+		
+		Leitura anaLe = new Leitura();
+		
 		// Esse valor armazena o numero de Nos
-		int nNos = 2;
+		int nNos = anaLe.getNumDeEstados();
 		
 		// Esse valor armazena o numero de transicoes
-		int nTransicoes = 4;
+		int nTransicoes = anaLe.getNumDeTransicoes();
 		
 		// Vetor que armazena todos os Nos
-		No[] vetorNos = new No[nNos]; 
+		No[] vetorNos = new No[nNos];
 
 		// No Inicial
 		No noInicial = new No();
 
-		// Lista Encadeada que armazena os simbolos do alfabeto
-		LinkedList<String> alfabeto = new LinkedList<>();
-		
-		alfabeto.add("a");
-		alfabeto.add("b");
-		
-		System.out.println("Alfabeto:" + alfabeto);
+		// Lista de Vetor que armazena os simbolos do alfabeto
+		System.out.println("Alfabeto:" + anaLe.getSimbolos());
 		
 		// Simbolo do alfabeto
 		String chave = null;
@@ -64,7 +78,7 @@ public class AFN {
 			vetorNos[i] = new No();
 			vetorNos[i].setEstadoInicial(0);
 			vetorNos[i].setEstadoFinal(0);
-			vetorNos[i].setNome("q" + i);
+			vetorNos[i].setNome(anaLe.getEstados().get(i));
 			vetorNos[i].hMap = new HashMap<String, No>();
 			System.out.println("Nome do No na pos " + i + ": " + vetorNos[i].getNome());
 		}
@@ -74,13 +88,24 @@ public class AFN {
 		
 		System.out.println("tam do vetor: " + vetorNos.length);
 		
-		vetorNos[0].setEstadoInicial(1); // q0 eh estado inicial
-		vetorNos[vetorNos.length - 1].setEstadoFinal(1); // q1 eh estado final
+		// Define o estado inicial
+		for (int i = 0; i < vetorNos.length; i++) {
+			if (vetorNos[i].getNome().equals(anaLe.getEstadoInicial())) {
+				vetorNos[i].setEstadoInicial(1);
+				noInicial = vetorNos[i];
+			}
+		}
+		// Define os estados finais
+		for (int i = 0; i < vetorNos.length; i++) {
+			for (int j = 0; j < anaLe.getNumDeEstadosFinais(); j++) {
+				if (vetorNos[i].getNome().equals(anaLe.getEstadosFinais().get(j))) {
+					vetorNos[i].setEstadoFinal(1);
+				}
+			}
+		}
 		
 		System.out.println("No Inicial " + vetorNos[0].getNome() + " : " + vetorNos[0].getEstadoInicial());
 		System.out.println("No Final " + vetorNos[vetorNos.length - 1].getNome() + " : " + vetorNos[vetorNos.length - 1].getEstadoFinal());
-		
-		noInicial = vetorNos[0];
 		
 		// Se a transicao do no inicial for a, vai para o no1
 		// Transicao (q0, a, q1)
@@ -89,23 +114,16 @@ public class AFN {
 		// Esse vetor recebera os valores lidos do arquivo para
 		// preencher o vetor armazenado na memoria
 		// [nome_do_no][letra]
-		String[][] trans = new String[nTransicoes][3];
+		String[][] trans = new String[anaLe.getNumDeTransicoes()][3];
 		
-		trans[0][0] = "q0";
-		trans[0][1] = "b";
-		trans[0][2] = "q0";
-
-		trans[1][0] = "q0";
-		trans[1][1] = "a";
-		trans[1][2] = "q1";
+		String s[] = new String[3];
 		
-		trans[2][0] = "q1";
-		trans[2][1] = "a";
-		trans[2][2] = "q1";
-
-		trans[3][0] = "q1";
-		trans[3][1] = "b";
-		trans[3][2] = "q1";
+		for (int i = 0; i < anaLe.getNumDeTransicoes(); i++) {
+			s = anaLe.getTransicoes().get(i).split(",");
+			for (int j = 0; j < 3; j++) {
+				trans[i][j] = s[j];
+			}
+		}
 		
 		System.out.println("\n\nBUSCAS NAS TRANSICOES\n");
 		// Dentre as transicoes lidas do arquivo
@@ -157,12 +175,10 @@ public class AFN {
 			}
 		}
 		ImprimeHashNo(vetorNos[1]);
-
-		String palavra = "babbabababbaba";
 		
 		boolean aux = false;
 		
-		aux = VerificaPalavra(palavra, vetorNos, alfabeto, noInicial);
+		aux = VerificaPalavra(palavra, vetorNos, anaLe.getSimbolos(), noInicial);
 		
 		if(aux) {
 			System.out.println("A palavra " + palavra + " eh aceita pelo automato!");
@@ -172,7 +188,7 @@ public class AFN {
 		}
 	}
 
-	public static boolean VerificaPalavra(String palavra, No[] vetorNos, LinkedList<String> alfabeto, No noInicial) {
+	public static boolean VerificaPalavra(String palavra, No[] vetorNos, ArrayList<String> alfabeto, No noInicial) {
 		boolean flag = true;
 		No noAtual;
 		
@@ -233,6 +249,11 @@ public class AFN {
 			if (noAtual.hMap.containsKey(pal)) {
 				// No atual recebe o no destino
 				System.out.println(i + " NO ATUAL: " + noAtual.getNome());
+				
+				for (int j = 0; j < noAtual.hMap.size(); j++) {
+					
+				}
+				
 				noAtual = noAtual.hMap.get(pal);
 				System.out.println(i + " NO DESTINO: " + noAtual.getNome());
 			}
