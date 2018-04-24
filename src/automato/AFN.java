@@ -25,10 +25,10 @@ public class AFN {
 	}
 	
 	// Verifica se ha caracteres para serem gastos
-	public static boolean VerificaVazia(String[] VetPalavra, int aux) {
+	public static boolean VerificaVazia(char[] vetPalavra, int aux) {
 		boolean flag = false;
 		
-		if(aux == VetPalavra.length) {
+		if(aux == vetPalavra.length) {
 			flag = true;
 			return flag;
 		}
@@ -37,10 +37,10 @@ public class AFN {
 	}
 	
 	// Verifica se o estado atual eh final
-	public static boolean VerificaFinal(NoN no) {
+	public static boolean VerificaFinal(No noAtual) {
 		boolean flag = false;
 		
-		if(no.getEstadoFinal() == 1) {
+		if(noAtual.getEstadoFinal() == 1) {
 			flag = true;
 			return flag;
 		}
@@ -250,8 +250,10 @@ public class AFN {
 				// No atual recebe o no destino
 				System.out.println(i + " NO ATUAL: " + noAtual.getNome());
 				
-				for (int j = 0; j < noAtual.hMap.size(); j++) {
-					
+				if( VerificaVazia(vetPalavra, i) && VerificaFinal(noAtual)){
+					return flag;
+				}else{
+					VerificaPalavra(palavra, vetorNos, alfabeto, noAtual.hMap.get(pal));
 				}
 				
 				noAtual = noAtual.hMap.get(pal);
