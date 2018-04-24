@@ -1,4 +1,4 @@
-SIMULADOR DE AFD
+SIMULADOR DE AFD e AFN
 ====================================================================================
 
 PROFESSOR: Vinícius Durelli
@@ -22,6 +22,10 @@ INSTRUÇÕES:
 		A variável String palavra = "babbabababbaba" deverá ser alterado pelo usuário
 		para realizar a verificação de aceitação.
 	-
+
+	- Abrir o código correspondente ao simulador desejado.
+	
+	-
 -
 	
 - SAÍDA:
@@ -30,7 +34,7 @@ INSTRUÇÕES:
 
 -
 
-EX DE ENTRADA:
+EX DE ENTRADA PARA O AFD:
 2 		: Numero de Simbolos do Alfabeto
 a 		: Simbolo
 b 		: Simbolo
@@ -46,7 +50,7 @@ q0		: Estado Inicial
 q1		: Estado Final
 q0		: Estado Final
 
-EX DE SAÍDA
+EX DE SAÍDA PARA O AFD:
 
 Linha: 2
 NumSImbolos: 2
