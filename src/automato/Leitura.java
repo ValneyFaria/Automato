@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 public class Leitura {
 	private int numDeSimbolos = 0;
-	private ArrayList <String> simbolos = new ArrayList<>();
+	private ArrayList <String> simbolos = new ArrayList<String>();
 	private int numDeEstados = 0;
-	private ArrayList <String> estados = new ArrayList<>();
+	private ArrayList <String> estados = new ArrayList<String>();
 	private int numDeTransicoes = 0;
-	private ArrayList <String> transicoes = new ArrayList<>();
+	private ArrayList <String> transicoes = new ArrayList<String>();
 	private String estadoInicial = new String();
 	private int numDeEstadosFinais = 0;
-	private ArrayList <String> estadosFinais = new ArrayList<>();
+	private ArrayList <String> estadosFinais = new ArrayList<String>();
 	
 	public Leitura() {
 		try {
