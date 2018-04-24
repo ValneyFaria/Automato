@@ -1,7 +1,7 @@
 package automato;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public class AFD {
 	
@@ -25,25 +25,23 @@ public class AFD {
 	}
 
 	public static void main(String[] args) {
+		
+		Leitura anaLe = new Leitura();
+		
 		// Esse valor armazena o numero de Nos
-		int nNos = 2;
+		int nNos = anaLe.getNumDeEstados();
 		
 		// Esse valor armazena o numero de transicoes
-		int nTransicoes = 4;
+		int nTransicoes = anaLe.getNumDeTransicoes();
 		
 		// Vetor que armazena todos os Nos
-		No[] vetorNos = new No[nNos]; 
+		No[] vetorNos = new No[nNos];
 
 		// No Inicial
 		No noInicial = new No();
 
-		// Lista Encadeada que armazena os simbolos do alfabeto
-		LinkedList<String> alfabeto = new LinkedList<>();
-		
-		alfabeto.add("a");
-		alfabeto.add("b");
-		
-		System.out.println("Alfabeto:" + alfabeto);
+		// Lista de Vetor que armazena os simbolos do alfabeto
+		System.out.println("Alfabeto:" + anaLe.getSimbolos());
 		
 		// Simbolo do alfabeto
 		String chave = null;
@@ -54,7 +52,7 @@ public class AFD {
 			vetorNos[i] = new No();
 			vetorNos[i].setEstadoInicial(0);
 			vetorNos[i].setEstadoFinal(0);
-			vetorNos[i].setNome("q" + i);
+			vetorNos[i].setNome(anaLe.getEstados().get(i));
 			vetorNos[i].hMap = new HashMap<String, No>();
 			System.out.println("Nome do No na pos " + i + ": " + vetorNos[i].getNome());
 		}
@@ -79,23 +77,16 @@ public class AFD {
 		// Esse vetor recebera os valores lidos do arquivo para
 		// preencher o vetor armazenado na memoria
 		// [nome_do_no][letra]
-		String[][] trans = new String[nTransicoes][3];
+		String[][] trans = new String[anaLe.getNumDeTransicoes()][3];
 		
-		trans[0][0] = "q0";
-		trans[0][1] = "b";
-		trans[0][2] = "q0";
-
-		trans[1][0] = "q0";
-		trans[1][1] = "a";
-		trans[1][2] = "q1";
+		String s[] = new String[3];
 		
-		trans[2][0] = "q1";
-		trans[2][1] = "a";
-		trans[2][2] = "q1";
-
-		trans[3][0] = "q1";
-		trans[3][1] = "b";
-		trans[3][2] = "q1";
+		for (int i = 0; i < anaLe.getNumDeTransicoes(); i++) {
+			s = anaLe.getTransicoes().get(i).split(",");
+			for (int j = 0; j < 3; j++) {
+				trans[i][j] = s[j];
+			}
+		}
 		
 		System.out.println("\n\nBUSCAS NAS TRANSICOES\n");
 		// Dentre as transicoes lidas do arquivo
@@ -152,7 +143,7 @@ public class AFD {
 		
 		boolean aux = false;
 		
-		aux = VerificaPalavra(palavra, vetorNos, alfabeto, noInicial);
+		aux = VerificaPalavra(palavra, vetorNos, anaLe.getSimbolos(), noInicial);
 		
 		if(aux) {
 			System.out.println("A palavra " + palavra + " eh aceita pelo automato!");
@@ -162,7 +153,7 @@ public class AFD {
 		}
 	}
 
-	public static boolean VerificaPalavra(String palavra, No[] vetorNos, LinkedList<String> alfabeto, No noInicial) {
+	public static boolean VerificaPalavra(String palavra, No[] vetorNos, ArrayList<String> alfabeto, No noInicial) {
 		boolean flag = true;
 		No noAtual;
 		
