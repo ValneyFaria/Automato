@@ -26,7 +26,7 @@ public class AFD {
 
 	public static void main(String[] args) {
 		
-		String palavra = "baba";
+		String palavra = "$";
 		
 		Leitura anaLe = new Leitura();
 		
