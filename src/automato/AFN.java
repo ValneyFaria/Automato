@@ -77,14 +77,12 @@ public class AFN {
 			// Adiciona a Transicao ao No
 			vetorNos[NoPosition].getLTrans().add(t);
 		}
-		
+
 		// Exibir a lista de transições de todos os Nos
 		for (int i = 0; i < vetorNos.length; i++) {
 			ShowTransList(vetorNos[i]);
 		}
-		
-		
-		
+
 		System.out.println("Nos:");
 		for (int i = 0; i < vetorNos.length; i++) {
 			System.out.println(vetorNos[i].getEstadoFinal());
@@ -101,21 +99,35 @@ public class AFN {
 
 		return 0;
 	}
-	
+
 	// Exibe a Lista de Transições do Nó
 	public void ShowTransList(NoN no) {
-		
+
 		System.out.println("Lista de Transições do No " + no.getNome() + ":");
 		if (no.getLTrans().size() == 0) {
 			System.out.println("Lista Vazia!\n");
 			return;
 		}
-		
+
 		for (int i = 0; i < no.getLTrans().size(); i++) {
 			System.out.print(i + ": " + no.getLTrans().get(i).getEstadoOrigem() + ",");
 			System.out.print(no.getLTrans().get(i).getSimbolo() + ",");
 			System.out.println(no.getLTrans().get(i).getEstadoDestino());
 		}
 		System.out.println("");
+	}
+
+	// Verifica se algum dos estados duma lista é final
+	public boolean HasFinalState(ArrayList<NoN> Lista) {
+		for (int i = 0; i < Lista.size(); i++) {
+			// Se algum No na Lista é estado Final
+			if (Lista.get(i).getEstadoFinal() == 1) {
+				// Retornar Verdadeiro
+				return true;
+			}
+		}
+		// Senao, retornar Falso
+		return false;
+
 	}
 }
