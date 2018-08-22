@@ -161,6 +161,20 @@ public class AFD {
 		}
 	}
 
+	// Verifica se existe uma transição com um determinado simbolo
+	public boolean HasTransWithSymbol(No noAtual, String simbolo) {
+		for (int i = 0; i < noAtual.hMap.size(); i++) {
+			if (noAtual.hMap.containsKey(simbolo)) {
+				No value = noAtual.hMap.get(simbolo);
+				if (value.getNome().equals(noAtual.hMap.values())) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 	public boolean VerificaPalavra(String palavra, No[] vetorNos, ArrayList<String> alfabeto, No noInicial) {
 		boolean flag = true;
 		No noAtual;
@@ -202,7 +216,7 @@ public class AFD {
 		}
 
 		// Verificacao de Palavra com 1 Simbolo
-		if (palavra.length() == 1 && alfabeto.contains(palavra) && noAtual.getEstadoFinal() == 1) {
+		if (palavra.length() == 1 && noAtual.getEstadoFinal() == 1 && HasTransWithSymbol(noAtual, palavra)) {
 			System.out.println("\nPalavra Valida de um simbolo!");
 			flag = true;
 			return flag;

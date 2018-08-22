@@ -1,7 +1,7 @@
 package automato;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
 
 public class AFN {
 
@@ -11,9 +11,6 @@ public class AFN {
 
 		// Esse valor armazena o numero de Nos
 		int nNos = anaLe.getNumDeEstados();
-
-		// Esse valor armazena o numero de transicoes
-		int nTransicoes = anaLe.getNumDeTransicoes();
 
 		// Vetor que armazena todos os Nos
 		NoN[] vetorNos = new NoN[nNos];
@@ -83,10 +80,74 @@ public class AFN {
 			ShowTransList(vetorNos[i]);
 		}
 
-		System.out.println("Nos:");
-		for (int i = 0; i < vetorNos.length; i++) {
-			System.out.println(vetorNos[i].getEstadoFinal());
+		boolean aux = false;
+
+		aux = VerificaPalavra(palavra, vetorNos, anaLe.getSimbolos(), noInicial);
+
+		if (aux) {
+			System.out.printf("A palavra '%s' é aceita pelo automato!\n", palavra);
+		} else {
+			System.out.printf("A palavra '%s' não é aceita pelo automato!\n", palavra);
 		}
+	}
+
+	private boolean VerificaPalavra(String palavra, NoN[] vetorNos, ArrayList<String> alfabeto, NoN noInicial) {
+		// Listas que armazenarão os Nós Temporariamente
+		LinkedList<NoN> A = new LinkedList<NoN>();
+		LinkedList<NoN> B = new LinkedList<NoN>();
+
+		boolean flag = true;
+
+		char[] vetPalavra = new char[palavra.length()];
+
+		vetPalavra = palavra.toCharArray();
+		System.out.println(vetPalavra);
+
+		// Verificacao por Simbolos Invalidos
+		for (int i = 0; i < palavra.length(); i++) {
+			// Verifica se todos os símbolos estao contidos no alfabeto
+			if (alfabeto.contains(Character.toString(vetPalavra[i])) || palavra.equals("$")) {
+				System.out.println("Caracter Valido: " + vetPalavra[i]);
+				continue;
+			}
+			// Se algum caractere estranho for encontrado, a verificacao é
+			// terminada e a palavra não é aceita
+			else {
+				System.out.println("Caracter INVALIDO: " + vetPalavra[i]);
+				System.out.printf("\nO simbolo %s não pertence ao alfabeto!\n", vetPalavra[i]);
+				flag = false;
+				return flag;
+			}
+		}
+
+		// Verificacao de Palavra Vazia
+		if (palavra.equals("$") && noInicial.getEstadoFinal() == 1) {
+			System.out.println("Palavra Vazia!");
+			flag = true;
+			return flag;
+		} else if (palavra.equals("$") && noInicial.getEstadoFinal() == 0) {
+			System.out.println("Palavra Vazia!");
+			flag = false;
+			return flag;
+		}
+
+		// Verificacao de Palavra com 1 Simbolo
+
+		// Se o estado inicial é final, o tamanho da palavra é 1 e o No tem um
+		// transição com o simbolo
+		if (palavra.length() == 1 && noInicial.getEstadoFinal() == 1 && HasTransWithSymbol(noInicial, palavra)) {
+			System.out.println("\nPalavra Valida de um simbolo!");
+			flag = true;
+			// Aceitar
+			return flag;
+			// Senao, se o símbolo não estiver no alfabeto e
+		} else if (palavra.length() == 1 && alfabeto.contains(palavra) != true) {
+			System.out.println("\nPalavra Invalida de um simbolo!");
+			flag = false;
+			return flag;
+		}
+
+		return false;
 	}
 
 	// Busca a Posicao de um nome num dado vetor
@@ -98,6 +159,18 @@ public class AFN {
 		}
 
 		return 0;
+	}
+
+	// Verifica se existe uma transição com um determinado simbolo
+	public boolean HasTransWithSymbol(NoN no, String simbolo) {
+		for (int i = 0; i < no.getLTrans().size(); i++) {
+			if (no.getLTrans().get(i).getSimbolo().equals(simbolo)) {
+				return true;
+			}
+		}
+
+		return false;
+
 	}
 
 	// Exibe a Lista de Transições do Nó
