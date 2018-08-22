@@ -1,21 +1,28 @@
 package automato;
 
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class NoN {
-	// Um HashMap com Lista Encadeada
-	HashMap<String, LinkedList<No>> hMap = new HashMap<>();
-	private int estadoInicial;
-	private int estadoFinal;
 	private String nome;
+	private int estadoFinal;
+	private int estadoInicial;
+	// Lista de Transições do No
+	private ArrayList<Transition> LTrans = new ArrayList<Transition>();
+
+	public String getNome() {
+		return this.nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public void setEstadoInicial(int estadoInicial) {
 		this.estadoInicial = estadoInicial;
 	}
 
 	public int getEstadoInicial() {
-		return this.estadoInicial;	
+		return this.estadoInicial;
 	}
 
 	public void setEstadoFinal(int estadoFinal) {
@@ -25,12 +32,12 @@ public class NoN {
 	public int getEstadoFinal() {
 		return this.estadoFinal;
 	}
-	
-	public String getNome() {
-		return this.nome;	
+
+	public ArrayList<Transition> getLTrans() {
+		return LTrans;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setLTrans(ArrayList<Transition> lTrans) {
+		LTrans = lTrans;
 	}
 }
