@@ -1,93 +1,94 @@
 package automato;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 public class Leitura {
 	private int numDeSimbolos = 0;
-	private ArrayList <String> simbolos = new ArrayList<>();
+	private ArrayList<String> simbolos = new ArrayList<>();
 	private int numDeEstados = 0;
-	private ArrayList <String> estados = new ArrayList<String>();
+	private ArrayList<String> estados = new ArrayList<String>();
 	private int numDeTransicoes = 0;
-	private ArrayList <String> transicoes = new ArrayList<>();
+	private ArrayList<String> transicoes = new ArrayList<>();
 	private String estadoInicial = new String();
 	private int numDeEstadosFinais = 0;
-	private ArrayList <String> estadosFinais = new ArrayList<>();
-	
-	public Leitura() {
+	private ArrayList<String> estadosFinais = new ArrayList<>();
+
+	public Leitura(String NomeEntrada) {
 		try {
 			// Utiliza-se para ler o arquivo desejado
-			BufferedReader br = new BufferedReader(new FileReader("entrada.txt")); 
+			BufferedReader br = new BufferedReader(new FileReader(NomeEntrada));
 			String linha;
-			 
+
 			int i = 0;
 			try {
-				while(br.ready()) {
-					 linha = br.readLine();
-					 System.out.println("Linha: " + linha);
-					 this.numDeSimbolos = Integer.valueOf(linha);
-					 System.out.println("NumSImbolos: " + this.numDeSimbolos);
-					 i = 0;
-					 while(i < this.numDeSimbolos) {
-						 linha = br.readLine();
-						 this.simbolos.add(linha);
-						 i++;
-					 }
-					 linha = br.readLine();
-					 this.numDeEstados = Integer.valueOf(linha);
-					 i = 0;
-					 while(i < this.numDeEstados) {
-						 linha = br.readLine();
-						 this.estados.add(linha);
-						 i++;
-						 
-					 }
-					 linha = br.readLine();
-					 this.numDeTransicoes = Integer.valueOf(linha);
-					 i = 0;
-					 while(i < this.numDeTransicoes) {
-						 linha = br.readLine();
-						 transicoes.add(linha);
-						 i++;
-						 
-					 }
-					 linha = br.readLine();
-					 estadoInicial = linha;
-					 linha = br.readLine();
-					 numDeEstadosFinais = Integer.valueOf(linha);
-					 i = 0;
-					 while(i < numDeEstadosFinais) {
-						 linha = br.readLine();
-						 this.estadosFinais.add(linha);
-						 i++;
-						 
-					 }
-				 }
-				 System.out.println(this.numDeSimbolos);
-				 for(i = 0; i< this.numDeSimbolos; i++) {
-					 System.out.println(this.simbolos.get(i));
-				 }
-				 System.out.println(this.numDeEstados);
-				 for(i = 0; i< this.numDeEstados; i++) {
-					 System.out.println(this.estados.get(i));
-				 }
-				 System.out.println(this.numDeTransicoes);
-				 for(i = 0; i< this.numDeTransicoes; i++) {
-					 System.out.println(transicoes.get(i));
-				 }
-				 System.out.println(estadoInicial);
-				 System.out.println(numDeEstadosFinais);
-				 for(i = 0; i< numDeEstadosFinais; i++) {
-					 System.out.println(this.estadosFinais.get(i));
-				 }
-				 
-			 }catch(IOException e) {
-				 System.out.println(e);
-			
-			 }catch(StringIndexOutOfBoundsException o) {
-				 System.out.println(o);
-			 }
+				while (br.ready()) {
+					linha = br.readLine();
+					// System.out.println("Linha: " + linha);
+					this.numDeSimbolos = Integer.valueOf(linha);
+					i = 0;
+					while (i < this.numDeSimbolos) {
+						linha = br.readLine();
+						this.simbolos.add(linha);
+						i++;
+					}
+					linha = br.readLine();
+					this.numDeEstados = Integer.valueOf(linha);
+					i = 0;
+					while (i < this.numDeEstados) {
+						linha = br.readLine();
+						this.estados.add(linha);
+						i++;
+
+					}
+					linha = br.readLine();
+					this.numDeTransicoes = Integer.valueOf(linha);
+					i = 0;
+					while (i < this.numDeTransicoes) {
+						linha = br.readLine();
+						transicoes.add(linha);
+						i++;
+
+					}
+					linha = br.readLine();
+					estadoInicial = linha;
+					linha = br.readLine();
+					numDeEstadosFinais = Integer.valueOf(linha);
+					i = 0;
+					while (i < numDeEstadosFinais) {
+						linha = br.readLine();
+						this.estadosFinais.add(linha);
+						i++;
+
+					}
+				}
+				System.out.println("NumSimbolos: " + this.numDeSimbolos);
+				for (i = 0; i < this.numDeSimbolos; i++) {
+					System.out.println("Simbolo " + i + ": " + this.simbolos.get(i));
+				}
+				System.out.println("NumEstados: " + this.numDeEstados);
+				for (i = 0; i < this.numDeEstados; i++) {
+					System.out.println("Estado " + i + ": " + this.estados.get(i));
+				}
+				System.out.println("NumTransicoes: " + this.numDeTransicoes);
+				for (i = 0; i < this.numDeTransicoes; i++) {
+					System.out.println("Transicao " + i + ": " + transicoes.get(i));
+				}
+				System.out.println("Estado Inicial: " + estadoInicial);
+				System.out.println("N Estados Finais: " + numDeEstadosFinais);
+				for (i = 0; i < numDeEstadosFinais; i++) {
+					System.out.println("Estado Final " + i + ": " + this.estadosFinais.get(i));
+				}
+
+			} catch (IOException e) {
+				System.out.println(e);
+
+			} catch (StringIndexOutOfBoundsException o) {
+				System.out.println(o);
+			}
 		} catch (FileNotFoundException o) {
 			System.out.println(o);
 		}
@@ -164,11 +165,4 @@ public class Leitura {
 	public void setEstadosFinais(ArrayList<String> estadosFinais) {
 		this.estadosFinais = estadosFinais;
 	}
-	
-	
-	
 }
-		
-		
-		
-	

@@ -8,12 +8,12 @@ public class Principal {
 		int opt = 0;
 		String palavra;
 		Scanner le = new Scanner(System.in);
-		
+
 		System.out.println("Escolha uma opção:");
 		System.out.println("1 - AFD\n2 - AFN");
-		
+
 		opt = le.nextInt();
-		
+
 		while (opt == 0) {
 			if (opt == 1) {
 
@@ -27,19 +27,17 @@ public class Principal {
 
 		System.out.println("Insira a Palavra a ser conferida pelo automato:");
 		palavra = le.next();
-		
-		if(opt == 1) {
+
+		if (opt == 1) {
 			AFD afd = new AFD();
 			afd.Verifica(palavra);
+		} else if (opt == 2) {
+			AFN afn = new AFN();
+			afn.Verifica(palavra);
 		}
-		else if (opt == 2) {
-			/* AFN afn = new AFN();
-			 * afn.Verifica(palavra); */
-		}
-		
+
 		le.close();
 		System.out.println("\nTHE END");
-		
-	}
 
+	}
 }

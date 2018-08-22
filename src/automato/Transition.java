@@ -28,5 +28,4 @@ public class Transition {
 	public void setSimbolo(String simbolo) {
 		Simbolo = simbolo;
 	}
-
 }

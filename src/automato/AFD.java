@@ -7,7 +7,7 @@ public class AFD {
 
 	public void Verifica(String palavra) {
 
-		Leitura anaLe = new Leitura();
+		Leitura anaLe = new Leitura("entrada.txt");
 
 		// Esse valor armazena o numero de Nos do Automato
 		int nNos = anaLe.getNumDeEstados();
