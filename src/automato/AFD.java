@@ -5,12 +5,8 @@ import java.util.HashMap;
 
 public class AFD {
 
-	public static void main(String[] args) {
-		Verifica();
-	}
-
-	public static void Verifica() {
-		String palavra = "$";
+	public static void Verifica(String palavra) {
+		/*String palavra = "$";*/
 
 		Leitura anaLe = new Leitura();
 
