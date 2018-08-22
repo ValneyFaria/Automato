@@ -29,10 +29,12 @@ public class Principal {
 		palavra = ler.next();
 		
 		if(opt == 1) {
-			AFD.Verifica(palavra);
+			AFD afd = new AFD();
+			afd.Verifica(palavra);
 		}
 		else if (opt == 2) {
-			/*AFN.Verifica(palavra);*/
+			/* AFN afn = new AFN();
+			 * afn.Verifica(palavra); */
 		}
 		
 		ler.close();

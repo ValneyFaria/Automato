@@ -5,12 +5,11 @@ import java.util.HashMap;
 
 public class AFD {
 
-	public static void Verifica(String palavra) {
-		/*String palavra = "$";*/
+	public void Verifica(String palavra) {
 
 		Leitura anaLe = new Leitura();
 
-		// Esse valor armazena o numero de Nos
+		// Esse valor armazena o numero de Nos do Automato
 		int nNos = anaLe.getNumDeEstados();
 
 		// Esse valor armazena o numero de transicoes
@@ -143,17 +142,17 @@ public class AFD {
 		}
 	}
 
-	public static void imprimeVNos(No[] vetor) {
+	public void imprimeVNos(No[] vetor) {
 		for (int i = 0; i < vetor.length; i++) {
 			System.out.println(vetor[i].getNome());
 		}
 	}
 
-	public static void imprimeNo(No no) {
+	public void imprimeNo(No no) {
 		System.out.println(no.getNome());
 	}
 
-	public static void ImprimeHashNo(No n) {
+	public void ImprimeHashNo(No n) {
 		for (String key : n.hMap.keySet()) {
 
 			// Capturamos o valor a partir da chave
@@ -162,7 +161,7 @@ public class AFD {
 		}
 	}
 
-	public static boolean VerificaPalavra(String palavra, No[] vetorNos, ArrayList<String> alfabeto, No noInicial) {
+	public boolean VerificaPalavra(String palavra, No[] vetorNos, ArrayList<String> alfabeto, No noInicial) {
 		boolean flag = true;
 		No noAtual;
 
