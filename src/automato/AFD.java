@@ -28,7 +28,7 @@ public class AFD {
 		String chave = null;
 
 		// Colocar os nos num vetor e num for, verificar
-		// qual deles eh o estado inicial e quais sao estados finais
+		// qual deles é o estado inicial e quais sao estados finais
 		for (int i = 0; i < vetorNos.length; i++) {
 			vetorNos[i] = new No();
 			vetorNos[i].setEstadoInicial(0);
@@ -136,9 +136,9 @@ public class AFD {
 		aux = VerificaPalavra(palavra, vetorNos, anaLe.getSimbolos(), noInicial);
 
 		if (aux) {
-			System.out.println("A palavra " + palavra + " eh aceita pelo automato!");
+			System.out.printf("A palavra '%s' é aceita pelo automato!\n", palavra);
 		} else {
-			System.out.println("A palavra " + palavra + " nao eh aceita pelo automato!");
+			System.out.printf("A palavra '%s' não é aceita pelo automato!\n", palavra);
 		}
 	}
 
@@ -177,13 +177,14 @@ public class AFD {
 			// Verifica se todos os caracteres da palavra estao contidos no
 			// alfabeto
 			if (alfabeto.contains(Character.toString(vetPalavra[i])) || palavra.equals("$")) {
-				System.out.println("Caracter Validado");
+				System.out.println("Caracter Valido: " + vetPalavra[i]);
 				continue;
 			}
-			// Se algum caractere estranho for encontrado, a verificacao eh
+			// Se algum caractere estranho for encontrado, a verificacao é
 			// terminada
 			else {
-				System.out.println("Algum simbolo nao foi encontrado no alfabeto!");
+				System.out.println("Caracter INVALIDO: " + vetPalavra[i]);
+				System.out.printf("\nO simbolo %s não pertence ao alfabeto!\n", vetPalavra[i]);
 				flag = false;
 				return flag;
 			}
@@ -202,11 +203,11 @@ public class AFD {
 
 		// Verificacao de Palavra com 1 Simbolo
 		if (palavra.length() == 1 && alfabeto.contains(palavra) && noAtual.getEstadoFinal() == 1) {
-			System.out.println("Palavra Valida de um simbolo!");
+			System.out.println("\nPalavra Valida de um simbolo!");
 			flag = true;
 			return flag;
 		} else if (palavra.length() == 1 && alfabeto.contains(palavra) != true) {
-			System.out.println("Palavra Invalida de um simbolo!");
+			System.out.println("\nPalavra Invalida de um simbolo!");
 			flag = false;
 			return flag;
 		}
@@ -230,17 +231,17 @@ public class AFD {
 				return flag;
 			}
 
-			// Se a palavra foi toda percorrida e o estado atual eh final,
+			// Se a palavra foi toda percorrida e o estado atual é final,
 			// aceite
 			if (i == (vetPalavra.length - 1) && noAtual.getEstadoFinal() == 1) {
-				System.out.println("Palavra Percorrida e estado atual eh final!");
+				System.out.println("Palavra Percorrida e estado atual é final!");
 				flag = true;
 				return flag;
 			}
-			// Se a palavra foi toda percorrida e o estado atual nao eh final,
+			// Se a palavra foi toda percorrida e o estado atual não é final,
 			// rejeite
 			else if (i == (vetPalavra.length - 1) && noAtual.getEstadoFinal() == 0) {
-				System.out.println("Palavra Percorrida e estado atual nao eh final!");
+				System.out.println("Palavra Percorrida e estado atual não é final!");
 				flag = false;
 				return flag;
 			}

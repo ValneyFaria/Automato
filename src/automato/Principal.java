@@ -7,12 +7,12 @@ public class Principal {
 	public static void main(String[] args) {
 		int opt = 0;
 		String palavra;
-		Scanner ler = new Scanner(System.in);
+		Scanner le = new Scanner(System.in);
 		
-		System.out.println("Escolha uma opcao:");
+		System.out.println("Escolha uma opção:");
 		System.out.println("1 - AFD\n2 - AFN");
 		
-		opt = ler.nextInt();
+		opt = le.nextInt();
 		
 		while (opt == 0) {
 			if (opt == 1) {
@@ -26,7 +26,7 @@ public class Principal {
 		}
 
 		System.out.println("Insira a Palavra a ser conferida pelo automato:");
-		palavra = ler.next();
+		palavra = le.next();
 		
 		if(opt == 1) {
 			AFD afd = new AFD();
@@ -37,7 +37,8 @@ public class Principal {
 			 * afn.Verifica(palavra); */
 		}
 		
-		ler.close();
+		le.close();
+		System.out.println("\nTHE END");
 		
 	}
 

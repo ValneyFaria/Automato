@@ -17,7 +17,8 @@ public class Leitura {
 	
 	public Leitura() {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("entrada.txt")); //utiliza-se para ler o arquivo desejado
+			// Utiliza-se para ler o arquivo desejado
+			BufferedReader br = new BufferedReader(new FileReader("entrada.txt")); 
 			String linha;
 			 
 			int i = 0;
