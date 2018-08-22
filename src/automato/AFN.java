@@ -168,9 +168,7 @@ public class AFN {
 				return true;
 			}
 		}
-
 		return false;
-
 	}
 
 	// Exibe a Lista de Transições do Nó
