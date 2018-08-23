@@ -104,7 +104,7 @@ public class AFN {
 		for (int i = 0; i < palavra.length(); i++) {
 			// Verifica se todos os símbolos estao contidos no alfabeto
 			if (alfabeto.contains(Character.toString(vetPalavra[i])) || palavra.equals("$")) {
-				System.out.println("Caracter Valido: " + vetPalavra[i]);
+				System.out.println("Caracter " + i + " Valido: " + vetPalavra[i]);
 				continue;
 			}
 			// Se algum caractere estranho for encontrado, a verificacao é
@@ -132,7 +132,7 @@ public class AFN {
 
 		// Se o estado inicial é final, o tamanho da palavra é 1 e o No tem um
 		// transição com o simbolo
-		if (palavra.length() == 1 && noInicial.getEstadoFinal() == 1 && HasTransWithSymbol(noInicial, palavra)) {
+		if (palavra.length() == 1 && noInicial.getEstadoFinal() == 1 && ValidaInicialFinalSimbolo(noInicial, palavra)) {
 			System.out.println("\nPalavra Valida de um simbolo!");
 			flag = true;
 			// Aceitar
@@ -148,6 +148,7 @@ public class AFN {
 
 		// Adiciona o noInicial à Lista A
 		A.add(noInicial);
+
 		// Para cada simbolo da palavra
 		for (int i = 0; i < vetPalavra.length; i++) {
 			String pal = Character.toString(vetPalavra[i]);
@@ -155,23 +156,36 @@ public class AFN {
 			for (NoN n : A) {
 				// Se houver o simbolo na Lista de Transições do No
 				if (HasTransWithSymbol(n, pal)) {
+					System.out.println("OI");
 					// Buscar as Transições respectivas
 					for (int j = 0; j < n.getLTrans().size(); j++) {
 						// Adicionar os nós destino em B
 						if (n.getLTrans().get(j).getSimbolo().equals(pal)) {
-							B.add(n);
+
+							for (NoN non : A) {
+								// Verificar qual é o Nó de destino da
+								// transição
+								if (non.getNome().equals(n.getLTrans().get(j).getEstadoDestino())) {
+									// Adicioná-lo em B
+									B.add(n);
+								}
+
+							}
+
 						}
 					}
 				}
 			}
 
-			// Limpar a Lista A
+			// Limpa a Lista A
 			A.clear();
-			// Copiar a Lista B para A
-			A = B;
+			// Copia a Lista B para A
+			CopyListToAnotherList(A, B);
+
+			ShowL(A);
 
 		}
-		
+
 		// Para cada No em A
 		for (NoN n : A) {
 			// Verificar se algum é final
@@ -180,9 +194,38 @@ public class AFN {
 				return true;
 			}
 		}
-		
+
 		// Senão, rejeite
 		return false;
+	}
+
+	private boolean HasTransWithSymbol(NoN n, String simbolo) {
+		// Para cada transição do No
+		for (int i = 0; i < n.getLTrans().size(); i++) {
+			// Se existe uma transição para o simbolo
+			if (n.getLTrans().get(i).getSimbolo().equals(simbolo)) {
+				// Retorne Verdadeiro
+				return true;
+			}
+		}
+		// Senao, retorne Falso
+		return false;
+	}
+
+	// Exibe uma Lista
+	private void ShowL(LinkedList<NoN> L) {
+		System.out.println("\nExibindo Lista!");
+		for (NoN noN : L) {
+			System.out.println(noN.getNome());
+		}
+	}
+
+	// Copia uma Lista L2 para uma Lista L1
+	private void CopyListToAnotherList(LinkedList<NoN> L1, LinkedList<NoN> L2) {
+		for (NoN noN : L2) {
+			L1.add(noN);
+		}
+
 	}
 
 	// Busca a Posicao de um nome num dado vetor
@@ -197,12 +240,18 @@ public class AFN {
 	}
 
 	// Verifica se existe uma transição com um determinado simbolo
-	public boolean HasTransWithSymbol(NoN no, String simbolo) {
-		for (int i = 0; i < no.getLTrans().size(); i++) {
-			if (no.getLTrans().get(i).getSimbolo().equals(simbolo)) {
-				return true;
+	public boolean ValidaInicialFinalSimbolo(NoN noInicial, String simbolo) {
+		for (int i = 0; i < noInicial.getLTrans().size(); i++) {
+			if (noInicial.getLTrans().get(i).getSimbolo().equals(simbolo)) {
+				// Se o nome do No Inicial for igual ao do No Destino da
+				// transicao
+				if (noInicial.getNome().equals(noInicial.getLTrans().get(i).getEstadoDestino())) {
+					// Aceitar
+					return true;
+				}
 			}
 		}
+		// Senão, Rejeitar
 		return false;
 	}
 
