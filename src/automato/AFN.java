@@ -21,9 +21,6 @@ public class AFN {
 		// Lista de Vetor que armazena os simbolos do alfabeto
 		System.out.println("Alfabeto:" + anaLe.getSimbolos());
 
-		// Simbolo do alfabeto
-		String chave = null;
-
 		// Seta todos os estados como não-finais e não-iniciais
 		for (int i = 0; i < vetorNos.length; i++) {
 			vetorNos[i] = new NoN();
@@ -147,6 +144,44 @@ public class AFN {
 			return flag;
 		}
 
+		// Verificação de Palavra
+
+		// Adiciona o noInicial à Lista A
+		A.add(noInicial);
+		// Para cada simbolo da palavra
+		for (int i = 0; i < vetPalavra.length; i++) {
+			String pal = Character.toString(vetPalavra[i]);
+			// Para cada No na Lista A
+			for (NoN n : A) {
+				// Se houver o simbolo na Lista de Transições do No
+				if (HasTransWithSymbol(n, pal)) {
+					// Buscar as Transições respectivas
+					for (int j = 0; j < n.getLTrans().size(); j++) {
+						// Adicionar os nós destino em B
+						if (n.getLTrans().get(j).getSimbolo().equals(pal)) {
+							B.add(n);
+						}
+					}
+				}
+			}
+
+			// Limpar a Lista A
+			A.clear();
+			// Copiar a Lista B para A
+			A = B;
+
+		}
+		
+		// Para cada No em A
+		for (NoN n : A) {
+			// Verificar se algum é final
+			if (n.getEstadoFinal() == 1) {
+				// Se sim, aceite
+				return true;
+			}
+		}
+		
+		// Senão, rejeite
 		return false;
 	}
 
