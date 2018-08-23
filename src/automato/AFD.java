@@ -136,9 +136,9 @@ public class AFD {
 		aux = VerificaPalavra(palavra, vetorNos, anaLe.getSimbolos(), noInicial);
 
 		if (aux) {
-			System.out.printf("A palavra '%s' é aceita pelo automato!\n", palavra);
+			System.out.printf("\nA palavra '%s' é aceita pelo automato!\n", palavra);
 		} else {
-			System.out.printf("A palavra '%s' não é aceita pelo automato!\n", palavra);
+			System.out.printf("\nA palavra '%s' não é aceita pelo automato!\n", palavra);
 		}
 	}
 

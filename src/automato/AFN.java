@@ -62,7 +62,7 @@ public class AFN {
 
 			int NoPosition = BuscaPosByName(vetorNos, trans[i][0]);
 
-			// Cria uma transição
+			// Cria uma transição temporaria
 			Transition t = new Transition();
 			t.setSimbolo(trans[i][1]);
 			t.setEstadoOrigem(trans[i][0]);
@@ -152,21 +152,28 @@ public class AFN {
 		// Para cada simbolo da palavra
 		for (int i = 0; i < vetPalavra.length; i++) {
 			String pal = Character.toString(vetPalavra[i]);
+			System.out.println("SIMBOLO: " + pal);
 			// Para cada No na Lista A
 			for (NoN n : A) {
 				// Se houver o simbolo na Lista de Transições do No
 				if (HasTransWithSymbol(n, pal)) {
-					System.out.println("OI");
+					System.out.println("Nó " + n.getNome() + " tem transicao com " + pal);
+					
 					// Buscar as Transições respectivas
 					for (int j = 0; j < n.getLTrans().size(); j++) {
 						// Adicionar os nós destino em B
 						if (n.getLTrans().get(j).getSimbolo().equals(pal)) {
 
 							for (NoN non : A) {
+								System.out.println("Buscando Nó Destino da Tansicao " + n.getLTrans().get(j));
 								// Verificar qual é o Nó de destino da
 								// transição
+								
+								System.out.println("non: " + non.getNome());
+								System.out.println("nDestino: " + n.getLTrans().get(j).getEstadoDestino());
 								if (non.getNome().equals(n.getLTrans().get(j).getEstadoDestino())) {
 									// Adicioná-lo em B
+									System.out.println("No " + n.getNome() + " adicionado em B!");
 									B.add(n);
 								}
 
@@ -199,6 +206,7 @@ public class AFN {
 		return false;
 	}
 
+	// Verifica se existe uma transição com um determinado simbolo
 	private boolean HasTransWithSymbol(NoN n, String simbolo) {
 		// Para cada transição do No
 		for (int i = 0; i < n.getLTrans().size(); i++) {
@@ -239,7 +247,7 @@ public class AFN {
 		return 0;
 	}
 
-	// Verifica se existe uma transição com um determinado simbolo
+	// Validacao para palavras de um Simbolo
 	public boolean ValidaInicialFinalSimbolo(NoN noInicial, String simbolo) {
 		for (int i = 0; i < noInicial.getLTrans().size(); i++) {
 			if (noInicial.getLTrans().get(i).getSimbolo().equals(simbolo)) {
