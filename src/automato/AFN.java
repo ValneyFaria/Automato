@@ -101,6 +101,7 @@ public class AFN {
 		System.out.println(vetPalavra);
 
 		// Verificacao por Simbolos Invalidos
+		System.out.println("VALIDANDO CARACTERES");
 		for (int i = 0; i < palavra.length(); i++) {
 			// Verifica se todos os símbolos estao contidos no alfabeto
 			if (alfabeto.contains(Character.toString(vetPalavra[i])) || palavra.equals("$")) {
@@ -116,8 +117,10 @@ public class AFN {
 				return flag;
 			}
 		}
+		System.out.println("VALIDACAO DE CARACTERES CONCLUIDA!\n");
 
 		// Verificacao de Palavra Vazia
+		System.out.println("VERIFICANDO PALAVRA VAZIA");
 		if (palavra.equals("$") && noInicial.getEstadoFinal() == 1) {
 			System.out.println("Palavra Vazia!");
 			flag = true;
@@ -127,11 +130,13 @@ public class AFN {
 			flag = false;
 			return flag;
 		}
+		System.out.println("NÃO É PALAVRA VAZIA!\n");
 
 		// Verificacao de Palavra com 1 Simbolo
 
 		// Se o estado inicial é final, o tamanho da palavra é 1 e o No tem um
 		// transição com o simbolo
+		System.out.println("VALIDANDO PALAVRA DE UM SIMBOLO");
 		if (palavra.length() == 1 && noInicial.getEstadoFinal() == 1 && ValidaInicialFinalSimbolo(noInicial, palavra)) {
 			System.out.println("\nPalavra Valida de um simbolo!");
 			flag = true;
@@ -143,9 +148,11 @@ public class AFN {
 			flag = false;
 			return flag;
 		}
+		System.out.println("A PALAVRA POSSUI MAIS DE UM SIMBOLO!\n");
 
 		// Verificação de Palavra
-
+		
+		System.out.println("INICIANDO VERIFICAÇÃO DE PALAVRA\n");
 		// Adiciona o noInicial à Lista A
 		A.add(noInicial);
 
@@ -155,6 +162,7 @@ public class AFN {
 			System.out.println("SIMBOLO: " + pal);
 			// Para cada No na Lista A
 			for (NoN n : A) {
+				//REMOVER ESSA VERIFICACAO
 				// Se houver o simbolo na Lista de Transições do No
 				if (HasTransWithSymbol(n, pal)) {
 					System.out.println("Nó " + n.getNome() + " tem transicao com " + pal);
