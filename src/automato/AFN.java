@@ -232,20 +232,6 @@ public class AFN {
 		return null;
 	}
 
-	// Verifica se existe uma transição com um determinado simbolo
-	private boolean HasTransWithSymbol(NoN n, String simbolo) {
-		// Para cada transição do No
-		for (int i = 0; i < n.getLTrans().size(); i++) {
-			// Se existe uma transição para o simbolo
-			if (n.getLTrans().get(i).getSimbolo().equals(simbolo)) {
-				// Retorne Verdadeiro
-				return true;
-			}
-		}
-		// Senao, retorne Falso
-		return false;
-	}
-
 	// Exibe uma Lista
 	private void ShowL(LinkedList<NoN> L) {
 
@@ -274,7 +260,6 @@ public class AFN {
 				return i;
 			}
 		}
-
 		return 0;
 	}
 
