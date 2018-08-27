@@ -183,26 +183,26 @@ public class AFN {
 				}
 			}
 
-			System.out.println("LISTA A: ");
+			// System.out.println("LISTA A: ");
 			ShowL(A);
-			System.out.println("LISTA B: ");
+			// System.out.println("LISTA B: ");
 			ShowL(B);
 
 			// Limpa a Lista A
-			System.out.println("LIMPANDO A!");
+			// System.out.println("LIMPANDO A!");
 			A.clear();
 
 			// Copia a Lista B para A
-			System.out.println("COPIANDO B PARA A!");
+			// System.out.println("COPIANDO B PARA A!");
 			CopyListToAnotherList(A, B);
 
 			// Limpa a Lista B
-			System.out.println("LIMPANDO B!");
+			// System.out.println("LIMPANDO B!");
 			B.clear();
 
-			System.out.println("LISTA A: ");
+			// System.out.println("LISTA A: ");
 			ShowL(A);
-			System.out.println("LISTA B: ");
+			// System.out.println("LISTA B: ");
 			ShowL(B);
 		}
 
@@ -234,12 +234,12 @@ public class AFN {
 
 	// Exibe uma Lista
 	private void ShowL(LinkedList<NoN> L) {
-
+		// Verificação de Lista Vazia
 		if (L.size() == 0) {
 			System.out.println("-> LISTA VAZIA!\n");
 			return;
 		}
-
+		// Exibe o nome de cada um dos itens na lista
 		for (NoN noN : L) {
 			System.out.println(noN.getNome());
 		}
@@ -250,7 +250,6 @@ public class AFN {
 		for (NoN noN : L2) {
 			L1.add(noN);
 		}
-
 	}
 
 	// Busca a Posicao de um nome num dado vetor
@@ -281,13 +280,13 @@ public class AFN {
 
 	// Exibe a Lista de Transições do Nó
 	public void ShowTransList(NoN no) {
-
 		System.out.println("Lista de Transições do No " + no.getNome() + ":");
+		// Verificação de Lista Vazia
 		if (no.getLTrans().size() == 0) {
 			System.out.println("VAZIA!\n");
 			return;
 		}
-
+		// Exibe as transições de forma formatada
 		for (int i = 0; i < no.getLTrans().size(); i++) {
 			System.out.print(i + ": " + no.getLTrans().get(i).getEstadoOrigem() + ",");
 			System.out.print(no.getLTrans().get(i).getSimbolo() + ",");
@@ -296,7 +295,7 @@ public class AFN {
 		System.out.println("");
 	}
 
-	// Verifica se algum dos estados duma lista é final
+	// Verifica se algum dos estados de uma lista é final
 	public boolean HasFinalState(ArrayList<NoN> Lista) {
 		for (int i = 0; i < Lista.size(); i++) {
 			// Se algum No na Lista é estado Final
@@ -307,6 +306,5 @@ public class AFN {
 		}
 		// Senao, retornar Falso
 		return false;
-
 	}
 }
