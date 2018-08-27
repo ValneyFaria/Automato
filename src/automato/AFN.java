@@ -183,27 +183,14 @@ public class AFN {
 				}
 			}
 
-			// System.out.println("LISTA A: ");
-			ShowL(A);
-			// System.out.println("LISTA B: ");
-			ShowL(B);
-
 			// Limpa a Lista A
-			// System.out.println("LIMPANDO A!");
 			A.clear();
 
 			// Copia a Lista B para A
-			// System.out.println("COPIANDO B PARA A!");
 			CopyListToAnotherList(A, B);
 
 			// Limpa a Lista B
-			// System.out.println("LIMPANDO B!");
 			B.clear();
-
-			// System.out.println("LISTA A: ");
-			ShowL(A);
-			// System.out.println("LISTA B: ");
-			ShowL(B);
 		}
 
 		// Para cada No em A
