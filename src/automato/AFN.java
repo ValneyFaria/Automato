@@ -151,7 +151,7 @@ public class AFN {
 		System.out.println("A PALAVRA POSSUI MAIS DE UM SIMBOLO!\n");
 
 		// Verificação de Palavra
-		
+
 		System.out.println("INICIANDO VERIFICAÇÃO DE PALAVRA\n");
 		// Adiciona o noInicial à Lista A
 		A.add(noInicial);
@@ -162,21 +162,22 @@ public class AFN {
 			System.out.println("SIMBOLO: " + pal);
 			// Para cada No na Lista A
 			for (NoN n : A) {
-				//REMOVER ESSA VERIFICACAO
+				// REMOVER ESSA VERIFICACAO
 				// Se houver o simbolo na Lista de Transições do No
 				if (HasTransWithSymbol(n, pal)) {
 					System.out.println("Nó " + n.getNome() + " tem transicao com " + pal);
-					
+
 					// Buscar as Transições respectivas
 					for (int j = 0; j < n.getLTrans().size(); j++) {
 						// Adicionar os nós destino em B
 						if (n.getLTrans().get(j).getSimbolo().equals(pal)) {
 
 							for (NoN non : A) {
-								System.out.println("Buscando Nó Destino da Tansicao " + n.getLTrans().get(j));
+								System.out.println(
+										"Buscando Nó Destino da Tansicao: " + n.getLTrans().get(j).getEstadoDestino());
 								// Verificar qual é o Nó de destino da
 								// transição
-								
+
 								System.out.println("non: " + non.getNome());
 								System.out.println("nDestino: " + n.getLTrans().get(j).getEstadoDestino());
 								if (non.getNome().equals(n.getLTrans().get(j).getEstadoDestino())) {
@@ -184,9 +185,7 @@ public class AFN {
 									System.out.println("No " + n.getNome() + " adicionado em B!");
 									B.add(n);
 								}
-
 							}
-
 						}
 					}
 				}
@@ -231,6 +230,12 @@ public class AFN {
 	// Exibe uma Lista
 	private void ShowL(LinkedList<NoN> L) {
 		System.out.println("\nExibindo Lista!");
+
+		if (L.size() == 0) {
+			System.out.println("-> LISTA VAZIA!\n");
+			return;
+		}
+
 		for (NoN noN : L) {
 			System.out.println(noN.getNome());
 		}
