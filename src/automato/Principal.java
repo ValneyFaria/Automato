@@ -8,7 +8,8 @@ public class Principal {
 		String opt = "0";
 		String palavra;
 		Scanner le = new Scanner(System.in);
-
+		
+		System.out.println("MONTADOR E SIMULADOR DE AFD E AFN\n");
 		System.out.println("Escolha uma opção:");
 		System.out.println("1 - AFD\n2 - AFN");
 
