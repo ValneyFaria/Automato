@@ -65,20 +65,21 @@ public class Leitura {
 
 					}
 				}
-				System.out.println("NumSimbolos: " + this.numDeSimbolos);
+				System.out.println("\nINICIANDO LEITURA DO ARQUIVO " + NomeEntrada + "\n");
+				System.out.println("Numero de Símbolos do Alfabeto: " + this.numDeSimbolos);
 				for (i = 0; i < this.numDeSimbolos; i++) {
 					System.out.println("Simbolo " + i + ": " + this.simbolos.get(i));
 				}
-				System.out.println("NumEstados: " + this.numDeEstados);
+				System.out.println("\nNúmero de Estados: " + this.numDeEstados);
 				for (i = 0; i < this.numDeEstados; i++) {
 					System.out.println("Estado " + i + ": " + this.estados.get(i));
 				}
-				System.out.println("NumTransicoes: " + this.numDeTransicoes);
+				System.out.println("\nNúmero de Transições: " + this.numDeTransicoes);
 				for (i = 0; i < this.numDeTransicoes; i++) {
-					System.out.println("Transicao " + i + ": " + transicoes.get(i));
+					System.out.println("Transição " + i + ": " + transicoes.get(i));
 				}
-				System.out.println("Estado Inicial: " + estadoInicial);
-				System.out.println("N Estados Finais: " + numDeEstadosFinais);
+				System.out.println("\nEstado Inicial: " + estadoInicial);
+				System.out.println("\nNúmero de Estados Finais: " + numDeEstadosFinais);
 				for (i = 0; i < numDeEstadosFinais; i++) {
 					System.out.println("Estado Final " + i + ": " + this.estadosFinais.get(i));
 				}

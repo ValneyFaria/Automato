@@ -18,16 +18,12 @@ public class AFN {
 		// No Inicial
 		NoN noInicial = new NoN();
 
-		// Lista de Vetor que armazena os simbolos do alfabeto
-		System.out.println("Alfabeto:" + anaLe.getSimbolos());
-
 		// Seta todos os estados como não-finais e não-iniciais
 		for (int i = 0; i < vetorNos.length; i++) {
 			vetorNos[i] = new NoN();
 			vetorNos[i].setEstadoInicial(0);
 			vetorNos[i].setEstadoFinal(0);
 			vetorNos[i].setNome(anaLe.getEstados().get(i));
-			System.out.println("No na pos " + i + ": " + vetorNos[i].getNome());
 		}
 
 		// Define o estado inicial
@@ -56,8 +52,6 @@ public class AFN {
 			s = anaLe.getTransicoes().get(i).split(",");
 			for (int j = 0; j < 3; j++) {
 				trans[i][j] = s[j];
-				System.out.printf("I: %d J: %d\n", i, j);
-				System.out.println("Trans: " + trans[i][j]);
 			}
 
 			int NoPosition = BuscaPosByName(vetorNos, trans[i][0]);
@@ -82,9 +76,9 @@ public class AFN {
 		aux = VerificaPalavra(palavra, vetorNos, anaLe.getSimbolos(), noInicial);
 
 		if (aux) {
-			System.out.printf("A palavra '%s' é aceita pelo automato!\n", palavra);
+			System.out.printf("\nA palavra '%s' é aceita pelo automato!\n", palavra);
 		} else {
-			System.out.printf("A palavra '%s' não é aceita pelo automato!\n", palavra);
+			System.out.printf("\nA palavra '%s' não é aceita pelo automato!\n", palavra);
 		}
 	}
 
@@ -98,20 +92,19 @@ public class AFN {
 		char[] vetPalavra = new char[palavra.length()];
 
 		vetPalavra = palavra.toCharArray();
-		System.out.println(vetPalavra);
 
 		// Verificacao por Simbolos Invalidos
-		System.out.println("VALIDANDO CARACTERES DA PALAVRA");
+		System.out.println("VALIDANDO CARACTERES DA PALAVRA INSERIDA");
 		for (int i = 0; i < palavra.length(); i++) {
 			// Verifica se todos os símbolos estao contidos no alfabeto
 			if (alfabeto.contains(Character.toString(vetPalavra[i])) || palavra.equals("$")) {
-				System.out.println("Caracter " + i + " Valido: " + vetPalavra[i]);
+				System.out.println("Caractere " + i + " Válido: " + vetPalavra[i]);
 				continue;
 			}
 			// Se algum caractere estranho for encontrado, a verificacao é
 			// terminada e a palavra não é aceita
 			else {
-				System.out.println("Caracter INVALIDO: " + vetPalavra[i]);
+				System.out.println("CARACTERE INVALIDO: " + vetPalavra[i]);
 				System.out.printf("\nO simbolo %s não pertence ao alfabeto!\n", vetPalavra[i]);
 				flag = false;
 				return flag;
@@ -136,23 +129,24 @@ public class AFN {
 
 		// Se o estado inicial é final, o tamanho da palavra é 1 e o No tem um
 		// transição com o simbolo
-		System.out.println("VALIDANDO PALAVRA DE UM SIMBOLO");
+		System.out.println("VALIDANDO PALAVRA DE UM SÍMBOLO");
 		if (palavra.length() == 1 && noInicial.getEstadoFinal() == 1 && ValidaInicialFinalSimbolo(noInicial, palavra)) {
-			System.out.println("\nPalavra Valida de um simbolo!");
+			System.out.println("\nPalavra Válida de um símbolo!");
 			flag = true;
 			// Aceitar
 			return flag;
 			// Senao, se o símbolo não estiver no alfabeto e
 		} else if (palavra.length() == 1 && alfabeto.contains(palavra) != true) {
-			System.out.println("\nPalavra Invalida de um simbolo!");
+			System.out.println("\nPalavra Inválida de um símbolo!");
 			flag = false;
 			return flag;
 		}
-		System.out.println("A PALAVRA POSSUI MAIS DE UM SIMBOLO!\n");
+		System.out.println("A PALAVRA POSSUI MAIS DE UM SÍMBOLO!\n");
 
 		// Verificação de Palavra
 
 		System.out.println("INICIANDO VERIFICAÇÃO DE PALAVRA\n");
+
 		// Adiciona o noInicial à Lista A
 		A.add(noInicial);
 
@@ -162,7 +156,7 @@ public class AFN {
 		// Para cada simbolo da palavra
 		for (int i = 0; i < vetPalavra.length; i++) {
 			String pal = Character.toString(vetPalavra[i]);
-			System.out.println("ANALISANDO SIMBOLO: " + pal);
+			System.out.println("\n::ANALISANDO SIMBOLO: " + pal);
 			// Para cada No na Lista A
 			for (NoN n : A) {
 				// Para cada Transicao na Lista de Transicoes do No
@@ -170,12 +164,10 @@ public class AFN {
 					// Se a Transição possui o simbolo
 					if (t.getSimbolo().equals(pal)) {
 						// Verificar se o No existe em B
-
 						if (B.contains(BuscaNoByName(vetorNos, t.getEstadoDestino()))) {
 							System.out.println("NO " + n.getNome() + " INSERIDO ANTERIORMENTE!");
 						} else {
-							// Buscar o No destino correspondente e adicioná-lo
-							// em B
+							// Buscar o No destino e adicioná-lo em B
 							B.add(BuscaNoByName(vetorNos, t.getEstadoDestino()));
 							System.out.println("NO " + t.getEstadoDestino() + " INSERIDO EM B!");
 						}
@@ -183,13 +175,13 @@ public class AFN {
 				}
 			}
 
-			// Limpa a Lista A
+			// Esvazia a Lista A
 			A.clear();
 
 			// Copia a Lista B para A
 			CopyListToAnotherList(A, B);
 
-			// Limpa a Lista B
+			// Esvazia a Lista B
 			B.clear();
 		}
 
@@ -198,10 +190,10 @@ public class AFN {
 			// Verificar se algum é final
 			if (n.getEstadoFinal() == 1) {
 				// Se sim, aceite
+				System.out.println("\nESTADO FINAL ENCONTRADO EM A!");
 				return true;
 			}
 		}
-
 		// Senão, rejeite
 		return false;
 	}
@@ -267,7 +259,7 @@ public class AFN {
 
 	// Exibe a Lista de Transições do Nó
 	public void ShowTransList(NoN no) {
-		System.out.println("Lista de Transições do No " + no.getNome() + ":");
+		System.out.println("\nLista de Transições do No " + no.getNome() + ":");
 		// Verificação de Lista Vazia
 		if (no.getLTrans().size() == 0) {
 			System.out.println("VAZIA!\n");
@@ -279,7 +271,6 @@ public class AFN {
 			System.out.print(no.getLTrans().get(i).getSimbolo() + ",");
 			System.out.println(no.getLTrans().get(i).getEstadoDestino());
 		}
-		System.out.println("");
 	}
 
 	// Verifica se algum dos estados de uma lista é final
