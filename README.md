@@ -1,11 +1,12 @@
 SIMULADOR DE AFD e AFN
 ====================================================================================
 
-## PROFESSOR: Vinícius Durelli
+PROFESSOR:
+*	Vinícius Durelli
 
-## ALUNOS:
-# Ana Letícia Neves
-# Valney Faria
+ALUNOS:
+*	Ana Letícia Neves
+*	Valney Faria
 
 ------------------------------------------------------------------------------------
 
