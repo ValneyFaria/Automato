@@ -18,7 +18,7 @@ public class AFN {
 		// No Inicial
 		NoN noInicial = new NoN();
 
-		// Seta todos os estados como não-finais e não-iniciais
+		// Seta todos os estados como nï¿½o-finais e nï¿½o-iniciais
 		for (int i = 0; i < vetorNos.length; i++) {
 			vetorNos[i] = new NoN();
 			vetorNos[i].setEstadoInicial(0);
@@ -56,7 +56,7 @@ public class AFN {
 
 			int NoPosition = BuscaPosByName(vetorNos, trans[i][0]);
 
-			// Cria uma transição temporaria
+			// Cria uma transiÃ§Ã£o temporaria
 			Transition t = new Transition();
 			t.setSimbolo(trans[i][1]);
 			t.setEstadoOrigem(trans[i][0]);
@@ -66,7 +66,7 @@ public class AFN {
 			vetorNos[NoPosition].getLTrans().add(t);
 		}
 
-		// Exibir a lista de transições de todos os Nos
+		// Exibir a lista de transiÃ§Ãµes de todos os Nos
 		for (int i = 0; i < vetorNos.length; i++) {
 			ShowTransList(vetorNos[i]);
 		}
@@ -76,14 +76,14 @@ public class AFN {
 		aux = VerificaPalavra(palavra, vetorNos, anaLe.getSimbolos(), noInicial);
 
 		if (aux) {
-			System.out.printf("\nA palavra '%s' é aceita pelo automato!\n", palavra);
+			System.out.printf("\nA palavra '%s' Ã© aceita pelo automato!\n", palavra);
 		} else {
-			System.out.printf("\nA palavra '%s' não é aceita pelo automato!\n", palavra);
+			System.out.printf("\nA palavra '%s' nÃ£o Ã© aceita pelo automato!\n", palavra);
 		}
 	}
 
 	private boolean VerificaPalavra(String palavra, NoN[] vetorNos, ArrayList<String> alfabeto, NoN noInicial) {
-		// Listas que armazenarão os Nós Temporariamente
+		// Listas que armazenarao os Nos Temporariamente
 		LinkedList<NoN> A = new LinkedList<NoN>();
 		LinkedList<NoN> B = new LinkedList<NoN>();
 
@@ -96,16 +96,16 @@ public class AFN {
 		// Verificacao por Simbolos Invalidos
 		System.out.println("VALIDANDO CARACTERES DA PALAVRA INSERIDA");
 		for (int i = 0; i < palavra.length(); i++) {
-			// Verifica se todos os símbolos estao contidos no alfabeto
+			// Verifica se todos os simbolos estao contidos no alfabeto
 			if (alfabeto.contains(Character.toString(vetPalavra[i])) || palavra.equals("$")) {
-				System.out.println("Caractere " + i + " Válido: " + vetPalavra[i]);
+				System.out.println("Caractere " + i + " VÃ¡lido: " + vetPalavra[i]);
 				continue;
 			}
-			// Se algum caractere estranho for encontrado, a verificacao é
-			// terminada e a palavra não é aceita
+			// Se algum caractere estranho for encontrado, a verificacao
+			// termina e a palavra nÃ£o Ã© aceita
 			else {
 				System.out.println("CARACTERE INVALIDO: " + vetPalavra[i]);
-				System.out.printf("\nO simbolo %s não pertence ao alfabeto!\n", vetPalavra[i]);
+				System.out.printf("\nO simbolo %s nÃ£o pertence ao alfabeto!\n", vetPalavra[i]);
 				flag = false;
 				return flag;
 			}
@@ -123,31 +123,31 @@ public class AFN {
 			flag = false;
 			return flag;
 		}
-		System.out.println("NÃO É PALAVRA VAZIA!\n");
+		System.out.println("NÃƒO Ã‰ PALAVRA VAZIA!\n");
 
 		// Verificacao de Palavra com 1 Simbolo
 
-		// Se o estado inicial é final, o tamanho da palavra é 1 e o No tem um
-		// transição com o simbolo
-		System.out.println("VALIDANDO PALAVRA DE UM SÍMBOLO");
+		// Se o estado inicial Ã© final, o tamanho da palavra Ã© 1 e o No tem um
+		// transiÃ§Ã£o com o simbolo
+		System.out.println("VALIDANDO PALAVRA DE UM SÃMBOLO");
 		if (palavra.length() == 1 && noInicial.getEstadoFinal() == 1 && ValidaInicialFinalSimbolo(noInicial, palavra)) {
-			System.out.println("\nPalavra Válida de um símbolo!");
+			System.out.println("\nPalavra VÃ¡lida de um sÃ­mbolo!");
 			flag = true;
 			// Aceitar
 			return flag;
-			// Senao, se o símbolo não estiver no alfabeto e
+			// Senao, se o simbolo nao estiver no alfabeto e
 		} else if (palavra.length() == 1 && alfabeto.contains(palavra) != true) {
-			System.out.println("\nPalavra Inválida de um símbolo!");
+			System.out.println("\nPalavra InvÃ¡lida de um sÃ­mbolo!");
 			flag = false;
 			return flag;
 		}
-		System.out.println("A PALAVRA POSSUI MAIS DE UM SÍMBOLO!\n");
+		System.out.println("A PALAVRA POSSUI MAIS DE UM SÃMBOLO!\n");
 
-		// Verificação de Palavra
+		// VerificaÃ§Ã£o de Palavra
 
-		System.out.println("INICIANDO VERIFICAÇÃO DE PALAVRA\n");
+		System.out.println("INICIANDO VERIFICAÃ‡ÃƒO DE PALAVRA\n");
 
-		// Adiciona o noInicial à Lista A
+		// Adiciona o noInicial na Lista A
 		A.add(noInicial);
 
 		System.out.println("INICIO LISTA A: ");
@@ -161,13 +161,13 @@ public class AFN {
 			for (NoN n : A) {
 				// Para cada Transicao na Lista de Transicoes do No
 				for (Transition t : n.getLTrans()) {
-					// Se a Transição possui o simbolo
+					// Se a Transiï¿½ï¿½o possui o simbolo
 					if (t.getSimbolo().equals(pal)) {
 						// Verificar se o No existe em B
 						if (B.contains(BuscaNoByName(vetorNos, t.getEstadoDestino()))) {
 							System.out.println("NO " + n.getNome() + " INSERIDO ANTERIORMENTE!");
 						} else {
-							// Buscar o No destino e adicioná-lo em B
+							// Buscar o No destino e adicionï¿½-lo em B
 							B.add(BuscaNoByName(vetorNos, t.getEstadoDestino()));
 							System.out.println("NO " + t.getEstadoDestino() + " INSERIDO EM B!");
 						}
@@ -187,14 +187,14 @@ public class AFN {
 
 		// Para cada No em A
 		for (NoN n : A) {
-			// Verificar se algum é final
+			// Verificar se algum ï¿½ final
 			if (n.getEstadoFinal() == 1) {
 				// Se sim, aceite
 				System.out.println("\nESTADO FINAL ENCONTRADO EM A!");
 				return true;
 			}
 		}
-		// Senão, rejeite
+		// Senï¿½o, rejeite
 		return false;
 	}
 
@@ -206,14 +206,14 @@ public class AFN {
 				return n;
 			}
 		}
-		// Senão
-		System.out.println("NO NÃO ENCONTRADO!");
+		// Senï¿½o
+		System.out.println("NO NÃƒO ENCONTRADO!");
 		return null;
 	}
 
 	// Exibe uma Lista
 	private void ShowL(LinkedList<NoN> L) {
-		// Verificação de Lista Vazia
+		// Verificaï¿½ï¿½o de Lista Vazia
 		if (L.size() == 0) {
 			System.out.println("-> LISTA VAZIA!\n");
 			return;
@@ -253,19 +253,19 @@ public class AFN {
 				}
 			}
 		}
-		// Senão, Rejeitar
+		// SenÃ£o, Rejeitar
 		return false;
 	}
 
-	// Exibe a Lista de Transições do Nó
+	// Exibe a Lista de Transicoes do NÃ³
 	public void ShowTransList(NoN no) {
-		System.out.println("\nLista de Transições do No " + no.getNome() + ":");
-		// Verificação de Lista Vazia
+		System.out.println("\nLista de TransiÃ§Ãµes do No " + no.getNome() + ":");
+		// VerificaÃ§Ã£o de Lista Vazia
 		if (no.getLTrans().size() == 0) {
 			System.out.println("VAZIA!\n");
 			return;
 		}
-		// Exibe as transições de forma formatada
+		// Exibe as transiÃ§Ãµes de forma formatada
 		for (int i = 0; i < no.getLTrans().size(); i++) {
 			System.out.print(i + ": " + no.getLTrans().get(i).getEstadoOrigem() + ",");
 			System.out.print(no.getLTrans().get(i).getSimbolo() + ",");
@@ -273,10 +273,10 @@ public class AFN {
 		}
 	}
 
-	// Verifica se algum dos estados de uma lista é final
+	// Verifica se algum dos estados de uma lista Ã© final
 	public boolean HasFinalState(ArrayList<NoN> Lista) {
 		for (int i = 0; i < Lista.size(); i++) {
-			// Se algum No na Lista é estado Final
+			// Se algum No na Lista Ã© estado Final
 			if (Lista.get(i).getEstadoFinal() == 1) {
 				// Retornar Verdadeiro
 				return true;

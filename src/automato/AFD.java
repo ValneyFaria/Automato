@@ -25,7 +25,7 @@ public class AFD {
 		String chave = null;
 
 		// Colocar os nos num vetor e num for, verificar
-		// qual deles é o estado inicial e quais sao estados finais
+		// qual deles ï¿½ o estado inicial e quais sao estados finais
 		for (int i = 0; i < vetorNos.length; i++) {
 			vetorNos[i] = new No();
 			vetorNos[i].setEstadoInicial(0);
@@ -115,9 +115,9 @@ public class AFD {
 		aux = VerificaPalavra(palavra, vetorNos, anaLe.getSimbolos(), noInicial);
 
 		if (aux) {
-			System.out.printf("\nA palavra '%s' é aceita pelo automato!\n", palavra);
+			System.out.printf("\nA palavra '%s' Ã© aceita pelo automato!\n", palavra);
 		} else {
-			System.out.printf("\nA palavra '%s' não é aceita pelo automato!\n", palavra);
+			System.out.printf("\nA palavra '%s' nÃ£o Ã© aceita pelo automato!\n", palavra);
 		}
 	}
 
@@ -140,7 +140,7 @@ public class AFD {
 		}
 	}
 
-	// Verifica se existe uma transição com um determinado simbolo
+	// Verifica se existe uma transiÃ§Ã£o com um determinado simbolo
 	public boolean HasTransWithSymbol(No noAtual, String simbolo) {
 		for (int i = 0; i < noAtual.hMap.size(); i++) {
 			if (noAtual.hMap.containsKey(simbolo)) {
@@ -170,19 +170,19 @@ public class AFD {
 			// Verifica se todos os caracteres da palavra estao contidos no
 			// alfabeto
 			if (alfabeto.contains(Character.toString(vetPalavra[i])) || palavra.equals("$")) {
-				System.out.println("Caracter Válido: " + vetPalavra[i]);
+				System.out.println("Caracter VÃ¡lido: " + vetPalavra[i]);
 				continue;
 			}
-			// Se algum caractere estranho for encontrado, a verificacao é
+			// Se algum caractere estranho for encontrado, a verificacao ï¿½
 			// terminada
 			else {
-				System.out.println("Caracter INVÁLIDO: " + vetPalavra[i]);
-				System.out.printf("\nO simbolo %s não pertence ao alfabeto!\n", vetPalavra[i]);
+				System.out.println("Caracter INVÃLIDO: " + vetPalavra[i]);
+				System.out.printf("\nO simbolo %s nÃ£o pertence ao alfabeto!\n", vetPalavra[i]);
 				flag = false;
 				return flag;
 			}
 		}
-		System.out.println("VALIDACAO DE CARACTERES CONCLUÍDA!");
+		System.out.println("VALIDACAO DE CARACTERES CONCLUÃDA!");
 
 		// Verificacao de Palavra Vazia
 		System.out.println("\nVERIFICANDO PALAVRA VAZIA");
@@ -195,7 +195,7 @@ public class AFD {
 			flag = false;
 			return flag;
 		}
-		System.out.println("NÃO É PALAVRA VAZIA!");
+		System.out.println("NÃƒO Ã‰ PALAVRA VAZIA!");
 
 		// Verificacao de Palavra com 1 Simbolo
 		if (palavra.length() == 1 && noAtual.getEstadoFinal() == 1 && HasTransWithSymbol(noAtual, palavra)) {
@@ -209,7 +209,7 @@ public class AFD {
 		}
 
 		// Verificacao de Palavras
-		System.out.println("\nINICIANDO VERIFICAÇÃO DE PALAVRA");
+		System.out.println("\nINICIANDO VERIFICAÃ‡ÃƒO DE PALAVRA");
 
 		for (int i = 0; i < vetPalavra.length; i++) {
 			String pal = Character.toString(vetPalavra[i]);
@@ -227,17 +227,17 @@ public class AFD {
 				return flag;
 			}
 
-			// Se a palavra foi toda percorrida e o estado atual é final,
+			// Se a palavra foi toda percorrida e o estado atual Ã© final,
 			// aceite
 			if (i == (vetPalavra.length - 1) && noAtual.getEstadoFinal() == 1) {
-				System.out.println("Palavra Percorrida e estado atual é final!");
+				System.out.println("Palavra Percorrida e estado atual Ã© final!");
 				flag = true;
 				return flag;
 			}
-			// Se a palavra foi toda percorrida e o estado atual não é final,
+			// Se a palavra foi toda percorrida e o estado atual nÃ£o Ã© final,
 			// rejeite
 			else if (i == (vetPalavra.length - 1) && noAtual.getEstadoFinal() == 0) {
-				System.out.println("Palavra Percorrida e estado atual não é final!");
+				System.out.println("Palavra Percorrida e estado atual nÃ£o Ã© final!");
 				flag = false;
 				return flag;
 			}

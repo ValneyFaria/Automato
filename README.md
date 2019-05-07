@@ -12,45 +12,64 @@ Valney Faria
 INSTRUÇÕES:
 
 - ENTRADA:
-	- entrada.txt:
-		Arquivo que contém a estrutura básica do autômato, tal como número de símbolos
+	- entrada.txt e entradaN.txt:
+		*	Arquivo que contém a estrutura básica do autômato, tal como número de símbolos
 		do alfabeto, o alfabeto em si, o número de estados e os estados em si, as
 		transições de estados e símbolos, e as definições do estado inicial e dos
 		estados finais.
-	-
-	- Alteração no código:
-		A variável String palavra = "babbabababbaba" deverá ser alterado pelo usuário
-		para realizar a verificação de aceitação.
-	-
+		*	Para definir um AFD, basta montá-lo editando o arquivo "entrada.txt".
+		*	Para definir um AFN, basta montá-lo editando o arquivo "entradaN.txt".
+		
+		Seguem-se exemplos para montagem da estrutura:
 
-	- Abrir o código correspondente ao simulador desejado.
-	
+			EXEMPLO DE ENTRADA PARA UM AFD:
+			2 		: Numero de Simbolos do Alfabeto
+			a 		: Simbolo
+			b 		: Simbolo
+			2		: Numero de Estados
+			q0		: Estado
+			q1		: Estado
+			3		: Numero de Transições
+			q0,a,q1	: Transição 1
+			q0,b,q0	: Transição 2
+			q1,b,q0	: Transição 3
+			q0		: Estado Inicial
+			2		: Número de Estados Finais
+			q1		: Estado Final
+			q0		: Estado Final
+
+			EXEMPLO DE ENTRADA PARA UM AFN:
+			2 		: Numero de Simbolos do Alfabeto
+			a 		: Simbolo
+			b 		: Simbolo
+			2		: Numero de Estados
+			q0		: Estado
+			q1		: Estado
+			3		: Numero de Transições
+			q0,a,q1	: Transição 1
+			q0,a,q0	: Transição 2
+			q1,b,q0	: Transição 3
+			q0		: Estado Inicial
+			2		: Número de Estados Finais
+			q1		: Estado Final
+			q0		: Estado Final
+	-
+		*	O código deverá então ser executado, de preferência em uma IDE como o Eclipse.
+			A classe Principal é a que possui a função main().
+		*	Após, deve-se selecionar qual tipo de simulador executar. Se a montagem no arquivo "entrada.txt"
+			corresponder a um AFD, escolher a opção "1 - AFD". Do contrário, escolher a opção "2 - AFN".
+		*	Inserir uma palavra para realizar a simulação do autômato.
 	-
 -
 	
 - SAÍDA:
-	- O Simulador de AFD irá analisar a estrutura do automato descrita no arquivo de
-	entrada "entrada.txt" e a partir dela criar um vetor contendo cada um dos nós 
-
+	- O Simulador irá analisar a estrutura do automato descrita no arquivo de
+	entrada "entrada.txt" e a partir dela, montará e simulará um AFD ou AFN.
+	Ao fim da execução, uma mensagem exibe o resultado, afirmando se a palavra inserida é ou não
+	aceita pelo autômato.
 -
 
-EX DE ENTRADA PARA O AFD:
-2 		: Numero de Simbolos do Alfabeto
-a 		: Simbolo
-b 		: Simbolo
-2		: Numero de Estados
-q0		: Estado
-q1		: Estado
-3		: Numero de Transições
-q0,a,q1	: Transição
-q0,b,q0	: Transição
-q1,b,q0	: Transição
-q0		: Estado Inicial
-2		: Número de Estados Finais
-q1		: Estado Final
-q0		: Estado Final
-
-EX DE SAÍDA PARA O AFD:
+EXEMPLO DE SAÍDA PARA UM AFD EXECUTANDO A PALAVRA "babbabababbaba":
 
 Linha: 2
 NumSImbolos: 2

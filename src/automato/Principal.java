@@ -10,10 +10,10 @@ public class Principal {
 		Scanner le = new Scanner(System.in);
 
 		System.out.println("MONTADOR E SIMULADOR DE AFD E AFN\n");
-		System.out.println("Escolha uma opção:");
+		System.out.println("Escolha uma opÃ§Ã£o:");
 		System.out.println("1 - AFD\n2 - AFN");
 
-		// Verificação Inicial das escolhas de entrada
+		// VerificaÃ§Ã£o Inicial das escolhas de entrada
 		while (opt.equals("0")) {
 			opt = le.next();
 			if (opt.equals("1") || opt.equals("2")) {
@@ -27,11 +27,11 @@ public class Principal {
 		System.out.println("Insira a Palavra a ser conferida pelo automato:");
 		palavra = le.next();
 
-		// Se a opção escolhida for 1, instancia um AFD
+		// Se a opï¿½ï¿½o escolhida for 1, instancia um AFD
 		if (opt.equals("1")) {
 			AFD afd = new AFD();
 			afd.Verifica(palavra);
-			// Se a opção escolhida for 2, instancia um AFN
+			// Se a opï¿½ï¿½o escolhida for 2, instancia um AFN
 		} else if (opt.equals("2")) {
 			AFN afn = new AFN();
 			afn.Verifica(palavra);
